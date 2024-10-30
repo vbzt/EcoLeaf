@@ -1,0 +1,13 @@
+
+.textLarge { 
+  font-size: 39px !important;
+  font-weight: 600 !important;
+}
+
+.linha {
+  height: 3px !important;
+  background-color: #333 !important;
+  width: 100px !important;
+  margin: 20px 0 40px 0 !important;
+}
+

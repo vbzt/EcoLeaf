@@ -1,0 +1,130 @@
+.sectionTestimonials {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textLarge{ 
+  font-size: 39px;
+  font-weight: 600
+}
+
+.linha {
+  height: 3px;
+  background-color: #333;
+  width: 100px;
+  margin: 20px 0 40px 0;
+}
+
+
+.slideContainer {
+  max-width: 1120px;
+  width: 100%;
+  padding: 10px 0 50px 0;
+  margin-top: 20px;
+}
+
+.slideContent {
+  overflow: hidden;
+  margin: 0 40px;
+  border-radius: 25px;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 25px;
+  background-color: #fff;
+}
+
+.cardImage {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 3px;
+}
+
+.cardImage .cardImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #016d5b;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 25px 25px 0 25px;
+  height: 100%;
+  width: 100%;
+  background-color: #1c995f;
+}
+
+.overlay::before,
+.overlay::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+  background-color: #1c995f;
+}
+
+.overlay::after {
+  border-radius: 0 25px 0 0;
+  background-color: #fff;
+}
+
+/* Elements */
+.imageContent,
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 14px !important;
+}
+
+.imageContent {
+  row-gap: 5px;
+  position: relative;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.description {
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+  padding: 13px 25px;
+}
+
+.stars {
+  font-size: 14px;
+  padding: 10px 16px;
+  color: #fdcb05;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.stars:hover {
+  transform: translateY(-2px);
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .slide-container .swiper-button-next,
+    .slide-container .swiper-button-prev {
+        display: none !important;
+    }
+}
