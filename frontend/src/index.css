@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+::-webkit-scrollbar-thumb {
+  background-color: var(--colorido);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: var(--corFundo);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-style: normal;
+  font-family: "DM sans";
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  resize: none;
+  outline: none;
+  border: 0;
+  color: var(--corTexto);
+  scroll-behavior: smooth;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #1c995f;
+}
+
+.swiper-pagination-bullet {
+  background-color: #1c995f !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #0c6d40 !important;
+}
+
+
+/* Faqs.module.css */
+.articleFaqs {
+  min-width: 1200px;
+  min-height: 50vh; 
+  margin: 0 auto !important;
+}
+
+.textLarge { 
+  font-size: 39px !important;
+  font-weight: 600 !important;
+}
+
+.linha {
+  height: 3px !important;
+  background-color: #333 !important;
+  width: 100px !important;
+  margin: 20px 0 40px 0 !important;
+}
+
+
+.articleFaqs {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.articleFaqs .accordion .accordion-item .accordion-body {
+  color: #7a7a7a;
+}
+
+
+.articleFaqs .accordion .accordion-item .accordion-button:not(.collapsed) {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.articleFaqs .accordion .accordion-item .accordion-button {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 18px;
+}
+
+
+.articleFaqs .accordion .accordion-item .accordion-button:focus {
+  box-shadow: none;
+}
+
+form .formControl{
+  width: 40%;
+}
+
+form .formControl button{
+  width: 100%; 
+  background-color: transparent; 
+  padding: 1cqh;
+  font-size: 1rem;
+  border: 2px solid #e3e3e3;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+form .form-control button:hover{ 
+  color: #fff;
+  background-color: #000000;
+  border: 2px solid #000;
+}
+
+fieldset {
+  padding: 0 1cqh;
+  border: 2px solid  #e3e3e3;
+  border-radius: 7px;
+  transition: border-color all 0.3s ease-in-out
+}
+
+fieldset legend {
+  padding: 0 1cqh;
+}
+
+fieldset input, textarea{
+  background-color: transparent;
+  padding: 1cqh;
+  width: 100%;
+  font-size: 1rem;
+}
+
+
+fieldset:focus-within {
+  border-color: var(--colorido);
+}
+

@@ -1,0 +1,14 @@
+.container{ 
+  min-height: 80vh;
+  padding: 10vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8vh;
+}
+
+@media (max-width: 1024px){
+  .container { 
+    padding: 3vh 5vh;
+  }
+}

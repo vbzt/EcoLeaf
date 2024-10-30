@@ -1,0 +1,109 @@
+.header {
+  background-color: #198754;
+  width: 100%;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+}
+
+.header .navLinkActive{ 
+  background-color: #fff;
+  color: #000;
+}
+
+
+.header .menu {
+  display: none;
+  padding-top: 2px;
+}
+
+.header .closeMenu {
+  display: none;
+}
+
+.header .imgLogoWhiteText {
+  width: 180px;
+  cursor: pointer;
+}
+
+
+.header .navLink {
+  color: #343a40;
+  transition: color 0.3s ease;
+}
+
+
+.header .navLink.active {
+  color: #343a40;
+  background: #333;
+}
+
+
+.header .navLink:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Forms */
+
+.header .buscarPlantaForm .formControl {
+  border-radius: 0.25rem;
+  border-color: #ced4da;
+}
+
+
+.header .buscarPlantaForm .formControl:focus {
+
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+.header .buscarPlantaForm .btnLight {
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.header .buscarPlantaForm .btnLight:hover {
+  background-color: #e2e6ea;
+  color: #343a40;
+  border-color: #adb5bd;
+}
+
+.header .buscarPlantaForm .customBtn {
+  border: 2px solid #ccd1d5;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+}
+
+.header .buscarPlantaForm .customBtn .iconLupa {
+  width: 26px;
+  height: 26px;
+  margin: 0;
+}
+
+
+.header .buscarPlantaForm .customBtn:hover {
+  border: 2px solid #a4a8ab;
+  opacity: .9;
+}
+
+.inputForm {  
+  width: 30vw;
+  border: 1px solid #c2c2c2;
+
+}
+
+@media(max-width: 1024px){ 
+
+
+  .header .menu{
+    display: flex;
+  }
+
+  .header nav ul, .header form{
+    display: none !important;
+  }
+
+}
