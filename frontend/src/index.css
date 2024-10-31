@@ -94,46 +94,6 @@ html, body {
   box-shadow: none;
 }
 
-form .formControl{
-  width: 40%;
+section{
+  min-width: 100vh;
 }
-
-form .formControl button{
-  width: 100%; 
-  background-color: transparent; 
-  padding: 1cqh;
-  font-size: 1rem;
-  border: 2px solid #e3e3e3;
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-form .form-control button:hover{ 
-  color: #fff;
-  background-color: #000000;
-  border: 2px solid #000;
-}
-
-fieldset {
-  padding: 0 1cqh;
-  border: 2px solid  #e3e3e3;
-  border-radius: 7px;
-  transition: border-color all 0.3s ease-in-out
-}
-
-fieldset legend {
-  padding: 0 1cqh;
-}
-
-fieldset input, textarea{
-  background-color: transparent;
-  padding: 1cqh;
-  width: 100%;
-  font-size: 1rem;
-}
-
-
-fieldset:focus-within {
-  border-color: var(--colorido);
-}
-

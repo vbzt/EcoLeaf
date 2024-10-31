@@ -7,6 +7,7 @@ import Contact from './pages/contact/Contact'
 import Home from './pages/home/Home'
 import Register from './pages/auth/register/Register'
 import Login from './pages/auth/login/Login'
+import Blog from './pages/blog/Blog'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Container>
         <Routes>
           <Route path = '/' element = {<Home></Home>}></Route>
+          <Route path = '/blog' element = {<Blog></Blog>}></Route>
           <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
           <Route path = '/register' element = {<Register></Register>}></Route>
           <Route path = '/login' element = {<Login></Login>}></Route>

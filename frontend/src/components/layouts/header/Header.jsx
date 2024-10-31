@@ -52,7 +52,7 @@ const Header = () => {
                         <a href="#article-faqs" className={`nav-link ${styles.navLink} px-2 text-light`}>FAQs</a>
                     </li>
                     <li className="nav-item">
-                        <a href="#section-blog" className={`nav-link ${styles.navLink} text-light`}>Blog</a>
+                        <NavLink to="/blog" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Blog</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Contate-nos </NavLink>

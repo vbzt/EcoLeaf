@@ -1,13 +1,16 @@
 const Plant = require('../models/Plant')
 const getUserById = require('../helpers/get-user-by-id')
 const plantValidation = require('../helpers/plant-validation')
+const generatePlantImage = require('../helpers/generate-plant-image')
 const { checkUser } = require('./UserController')
+const getPlantImage = require('../helpers/generate-plant-image')
 const ObjectId = require('mongoose').Types.ObjectId
 let runChat
 (async () => {
   const module = await import('../chatbot/runChat.js')
   runChat = module.runChat
 })()
+
 
 
 class PlantController  {
@@ -88,49 +91,52 @@ class PlantController  {
 
     
 
-static async generatePlant(req, res) {
-  const { location, climate, humidity, waterNeed } = req.body;
+    static async generatePlant(req, res) {
+      const { location, climate, humidity, waterNeed } = req.body
+    
+      if (!location || !climate || !humidity || !waterNeed) {
+          res.status(422).json({ message: 'Responda a todos os passos do formulario!' })
+          return
+      }
+    
+      const response = await runChat(`
+        Olá chat, este prompt é pré-gerado e só muda com as informações que o usuário passa, então gere seguindo as seguintes regras:
+        A planta gerada deve ter: 
+        Seu nome popular, seu nome científico, e de um link para uma imagem da devida planta
+        Caso o usuário morar em casa, uma planta nem muito pequena nem muito grande
+        Caso morar em apartamento, uma planta pequena a média 
+        E em sítio de pequena a grande 
+        O output deve ser retornado em forma de JSON, tendo os seguintes valores 
+        Retorne SOMENTE o RAW json, sem nenhuma escrita adicional
+        - "popular": "Nome da planta"
+        - "cientifico": "Nome científico da planta"
+        - "descricao": "descrição da planta gerada"
+        - "link": "link do artigo na wikipedia desta planta"
+        Não use asteriscos (*) nem nenhum caractere especial
+        Não gere plantas tóxicas ou venenosas
+        Gere:
+        A planta deve se adequar a um(a) ${location},
+        A planta deve se adequar a um clima ${climate},
+        A planta deve se adequar a um ambiente ${humidity}, 
+        E o usuário quer ter um gasto de água ${waterNeed} ao cuidar da planta
+      `)
+    
+      try { 
+      const cleanedResponse = response.replace(/```(?:json)?|```/g, '').trim();
+      const parsedResponse = JSON.parse(cleanedResponse);
+        parsedResponse.link = await getPlantImage(parsedResponse.cientifico)
+        res.status(200).json({ message: "Planta gerada com sucesso!", parsedResponse })
+      } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Erro ao gerar a planta', error })
+      }
+    }
+    
 
-  if (!location || !climate || !humidity || !waterNeed) {
-    res.status(422).json({ message: 'Responda a todos os passos do formulario!' });
-    return;
-  }
 
-  const response = await runChat(`
-    Olá chat, este prompt é pré-gerado e só muda com as informações que o usuário passa, então gere seguindo as seguintes regras:
-    A planta gerada deve ter: 
-    Seu nome popular, seu nome científico, e de um link para uma imagem da devida planta
-    Caso o usuário morar em casa, uma planta nem muito pequena nem muito grande
-    Caso morar em apartamento, uma planta pequena a média 
-    E em sítio de pequena a grande 
-    O output deve ser retornado em forma de JSON, tendo os seguintes valores 
-    Retorne SOMENTE o RAW json, sem nenhuma escrita adicional
-    - "popular": "Nome da planta"
-    - "cientifico": "Nome científico da planta"
-    - "descricao": "descrição da planta gerada"
-    - "link": "link do artigo na wikipedia desta planta"
-    Não use asteriscos (*) nem nenhum caractere especial
-    Não gere plantas tóxicas ou venenosas
-    Gere:
-    A planta deve se adequar a um(a) ${location},
-    A planta deve se adequar a um clima ${climate},
-    A planta deve se adequar a um ambiente ${humidity}, 
-    E o usuário quer ter um gasto de água ${waterNeed} ao cuidar da planta
-  `);
-
-  try {
-    const parsedResponse = JSON.parse(response)
-
-
-    res.status(200).json({ message: "Planta gerada com sucesso!", parsedResponse });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erro ao gerar a planta', error });
-  }
 }
 
 
-  }
 
 
 
