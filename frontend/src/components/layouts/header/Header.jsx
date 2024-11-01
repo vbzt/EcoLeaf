@@ -1,10 +1,15 @@
 import { NavLink } from "react-router-dom"
+
 import Logo from '../../../assets/images/svg/TextoBranco.svg'
 import MenuBurger from '../../../assets/images/svg/burguer.png'
 import CloseMenu from '../../../assets/images/svg/x.png'
 import SearchIcon from '../../../assets/images/svg/LupaBranca.png'
+
 import styles from './Header.module.css'
-import { useRef, useEffect } from "react"
+
+import { useRef, useEffect, useContext } from "react"
+import { Context } from '../../../context/userContext'
+
 
 const Header = () => {
 
@@ -33,36 +38,52 @@ const Header = () => {
       }
     }, []) 
 
+    
+  const {authenticated, logout} = useContext(Context)
+
+
     return (
         <header ref={headerRef} className={`d-flex flex-wrap justify-content-between p-3 ${styles.header}`}>
             <img className={`px-4 ${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
             <nav className="d-flex">
                 <ul className={`nav nav-pills d-flex align-items-center justify-content-center ms-5`}>
+                    
                     <li className="nav-item">
-                        <NavLink
-                            to="/"
-                            className={({ isActive }) =>
-                                `nav-link ${styles.navLink} me-2 ${isActive ? styles.navLinkActive : "text-light"}`
-                            }
-                        >
+                        <NavLink to="/" className={({ isActive }) => `nav-link ${styles.navLink} me-2 ${isActive ? styles.navLinkActive : "text-light"}` }>
                             Home
                         </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <a href="#article-faqs" className={`nav-link ${styles.navLink} px-2 text-light`}>FAQs</a>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/blog" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Blog</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Contate-nos </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/register" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }>Registrar-se </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to="/checkuser" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> check </NavLink>
-                    </li>
+                    </li>  
+
+                    {
+                        authenticated  ?
+                            (
+                                <>
+                                    <li className="nav-item">
+                                        <NavLink to="/blog" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }>Blog</NavLink>
+                                     </li>
+                                
+                                    <li className="nav-item">
+                                        <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Contate-nos </NavLink>
+                                    </li>
+
+                                    <li className="nav-item" onClick={logout}>
+                                        <a className = { `nav-link ${styles.navLink}  text-light` }>Sair</a>
+                                    </li>
+                                </>
+                            )
+                            :
+                            (
+                                <>     
+                                    <li className="nav-item">
+                                        <NavLink to="/register" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }>Registrar-se </NavLink>
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink to="/login" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Entrar </NavLink>
+                                    </li>
+                                 </>
+                            )
+                    }
+                    
                 </ul>
             </nav>
             <div className={styles.menu}>

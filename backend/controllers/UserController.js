@@ -96,8 +96,8 @@ const formValidation = require('../helpers/form-validation')
     res.status(200).json({ user })
   }
 
-  static async logout(req){ 
-    req.session.destroy()
+  static async logout(req, res){ 
+    await req.session.destroy()
     res.status(200).json({ message: 'Logout realizado com sucesso' })
   }
 

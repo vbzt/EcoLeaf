@@ -29,6 +29,7 @@
 
 .header .navLink {
   color: #343a40;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
@@ -38,6 +39,10 @@
   background: #333;
 }
 
+.logout{ 
+  color: #fff;
+  cursor: pointer;
+}
 
 .header .navLink:hover {
   text-decoration: underline;
