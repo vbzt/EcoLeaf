@@ -6,22 +6,28 @@ const formValidation = require('../helpers/form-validation')
  class UserController {
 
   static async register(req, res) {
-    const { email, password } = req.body
+    const { username, email, password } = req.body
     
     if (!formValidation(req, res)){
       return 
     }
 
-    const userExists = await User.findOne({ email })
+    const userExists = await User.findOne({ username })
     if (userExists) {
-      res.status(422).json('Por favor, utilize outro email')
+      res.status(422).json({message: 'Por favor, utilize outro nome de usuario'})
+      return
+    }
+
+    const emailExists = await User.findOne({ email })
+    if (emailExists) {
+      res.status(422).json({message: 'Por favor, utilize outro email'})
       return
     }
 
     const salt = await bcrypt.genSalt(12)
     const passwordHash = await bcrypt.hash(password, salt)
 
-    const user = new User({ email, password: passwordHash })
+    const user = new User({ username, email, password: passwordHash })
 
 
       await user.save()
