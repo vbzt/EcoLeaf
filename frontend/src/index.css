@@ -33,6 +33,14 @@ html, body {
   scroll-behavior: smooth;
 }
 
+:root {
+  --corTexto: #231F20;
+  --corFundo: #F0F0F0;
+  --colorido: #E99E22;
+  --error: #c55e5e;
+  --success: #5e8e76;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   color: #1c995f;
@@ -95,5 +103,5 @@ html, body {
 }
 
 section{
-  min-width: 100vh;
+  min-width: 80vw;
 }
