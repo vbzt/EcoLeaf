@@ -34,13 +34,42 @@ const useAuth = () => {
     setFlashMessage(msgText, msgType)
   }
 
+  const login = async (user) =>{ 
+    let msgText = 'Login realizado com sucesso!'
+    let msgType = 'success'
 
+    try {
+      const { data } = await api.post('/users/login', user)
+      await authUser()
+    } catch (error) {
+      msgText = error.response.data.message
+      msgType = 'error'
+  }
+  setFlashMessage(msgText, msgType)
+
+  }
+
+  const logout = async (user) => { 
+    const msgText = 'Logout realizado com sucesso'
+    const msgType = 'success'
+    setAuthenticated(false)
+    try{ 
+      const { data } = await api.post('/users/logout')
+    }catch (error) {
+      msgText = error.response.data.message
+      msgType = 'error'
+    }
+    
+    setFlashMessage(msgText, msgType)
+
+  }
+  
   const authUser = async () => {
     setAuthenticated(true)
     navigate('/')
   }
 
-  return { authenticated, register}
+  return { authenticated, register, login, logout}
 }
 
 export default useAuth

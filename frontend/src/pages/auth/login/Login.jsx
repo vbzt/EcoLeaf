@@ -1,18 +1,20 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Input from '../../../components/form/Input'
+import { Context } from '../../../context/userContext'
 
-const Register = () => {
+const Login = () => {
+  
+  const { login } = useContext(Context)
   
   const [user, setUser] = useState({})
 
   const handleChange = (e) => {
     setUser({...user, [e.target.name]: e.target.value})
-    console.log(user)
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
-    console.log(user)
+    login(user)
   }
 
   return (
@@ -21,8 +23,8 @@ const Register = () => {
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
           <form className="form-bg card d-flex flex-column align-items-center justify-content-center p-3" onSubmit={handleSubmit}>
           <h1 className="mb-4 text-center">Login</h1>
-            <Input type="email" label="Email" name="email" placeholder="Digite seu email" handleOnChange={handleChange} required />
-            <Input type="password" label="Senha" name="password" placeholder="Digite a senha" handleOnChange={handleChange} required />
+            <Input type="email" label="Email" name="email" placeholder="Digite seu email" handleOnChange={handleChange}  />
+            <Input type="password" label="Senha" name="password" placeholder="Digite a senha" handleOnChange={handleChange}  />
            
             <div className="d-flex mt-4 justify-content-start">
               <p>Ainda não possuí uma conta? <a href="/register" className='colored'>Clique aqui</a></p>
@@ -38,4 +40,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

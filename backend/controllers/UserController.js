@@ -31,7 +31,7 @@ const formValidation = require('../helpers/form-validation')
 
 
       await user.save()
-      req.session.userId = user._id
+      req.session.userId = user._id.toString()
       req.session.save()
       res.status(201).json({ message: 'Usuário criado com sucesso', user })
     
@@ -41,28 +41,29 @@ const formValidation = require('../helpers/form-validation')
     const { email, password } = req.body
 
     if (!email) {
-      res.status(422).json('O email é obrigatório')
+      res.status(422).json({message:'O email é obrigatório'})
       return
     }
 
     if (!password) {
-      res.status(422).json('A senha é obrigatória')
+      res.status(422).json({message:'A senha é obrigatória'})
       return
     }
 
     const user = await User.findOne({ email })
     if (!user) {
-      res.status(422).json('Email ou senha incorretos')
+      res.status(422).json({message:'Email ou senha incorretos'})
       return
     }
 
     const checkPassword = await bcrypt.compare(password, user.password)
     if (!checkPassword) {
-      res.status(422).json('Email ou senha incorretos')
+      res.status(422).json({message:'Email ou senha incorretos'})
       return
     }
-    req.session.userId = user._id
+    req.session.userId = user._id.toString()
     req.session.save()
+    console.log(req.session.userId)
     res.status(200).json({ message: 'Login efetuado com sucesso', id: req.session.userId })
   }
 
@@ -91,6 +92,11 @@ const formValidation = require('../helpers/form-validation')
     }
 
     res.status(200).json({ user })
+  }
+
+  static async logout(req){ 
+    req.session.destroy()
+    res.status(200).json({ message: 'Logout realizado com sucesso' })
   }
 
 }
