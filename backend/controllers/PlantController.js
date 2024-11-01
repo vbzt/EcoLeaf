@@ -2,7 +2,7 @@ const Plant = require('../models/Plant')
 const getUserById = require('../helpers/get-user-by-id')
 const plantValidation = require('../helpers/plant-validation')
 const generatePlantImage = require('../helpers/generate-plant-image')
-const { checkUser } = require('./UserController')
+const { checkUser } = require('./UserController.js')
 const getPlantImage = require('../helpers/generate-plant-image')
 const ObjectId = require('mongoose').Types.ObjectId
 let runChat

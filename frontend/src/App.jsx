@@ -13,8 +13,8 @@ import Blog from './pages/blog/Blog'
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { UserProvider } from './context/userContext'
-import CheckUser from './pages/checkuser/CheckUser'
 
+import PrivateRoutes from './utils/PrivateRoutes'
 
 function App() {
 
@@ -27,11 +27,14 @@ function App() {
         <Container>
           <Routes>
             <Route path = '/' element = {<Home></Home>}></Route>
-            <Route path = '/blog' element = {<Blog></Blog>}></Route>
-            <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
             <Route path = '/register' element = {<Register></Register>}></Route>
             <Route path = '/login' element = {<Login></Login>}></Route>
-            <Route path = '/checkuser' element = {<CheckUser></CheckUser>}></Route>
+
+            <Route element = {<PrivateRoutes></PrivateRoutes>}>
+                <Route path = '/blog' element = {<Blog></Blog>}></Route>
+                <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
+            </Route>
+
           </Routes>
         </Container>
         <Footer></Footer>
