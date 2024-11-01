@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const ObjectId = require('mongoose').Types.ObjectId
 
 const formValidation = require('../helpers/form-validation')
 
@@ -31,7 +32,7 @@ const formValidation = require('../helpers/form-validation')
 
 
       await user.save()
-      req.session.userId = user._id.toString()
+      req.session.userId = user._id
       req.session.save()
       res.status(201).json({ message: 'Usuário criado com sucesso', user })
     
@@ -61,17 +62,18 @@ const formValidation = require('../helpers/form-validation')
       res.status(422).json({message:'Email ou senha incorretos'})
       return
     }
-    req.session.userId = user._id.toString()
+    req.session.userId = user._id
     req.session.save()
-    console.log(req.session.userId)
-    res.status(200).json({ message: 'Login efetuado com sucesso', id: req.session.userId })
+    res.status(200).json({ message: 'Login efetuado com sucesso', id: req.session.userId, session: req.session})
   }
 
   static async checkUser(req, res) {
     let currentUser
 
     if (req.session && req.session.userId) {
-      currentUser = await User.findById(req.session.userId)
+      
+      const id =  req.session.userId
+      currentUser = await User.findById(id)
       if (currentUser) {
         currentUser.password = undefined
       }
@@ -79,7 +81,7 @@ const formValidation = require('../helpers/form-validation')
       currentUser = null
     }
 
-    res.status(200).send(currentUser)
+    res.status(200).send({ currentUser, session: req.session })
   }
 
   static async getUserById(req, res) {

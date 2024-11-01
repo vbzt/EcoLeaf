@@ -13,6 +13,7 @@ import Blog from './pages/blog/Blog'
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { UserProvider } from './context/userContext'
+import CheckUser from './pages/checkuser/CheckUser'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
             <Route path = '/register' element = {<Register></Register>}></Route>
             <Route path = '/login' element = {<Login></Login>}></Route>
+            <Route path = '/checkuser' element = {<CheckUser></CheckUser>}></Route>
           </Routes>
         </Container>
         <Footer></Footer>

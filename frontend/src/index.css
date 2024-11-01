@@ -12,6 +12,7 @@
 
 html, body {
   height: 100%;
+  max-width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -34,9 +35,6 @@ html, body {
 }
 
 :root {
-  --corTexto: #231F20;
-  --corFundo: #F0F0F0;
-  --colorido: #E99E22;
   --error: #c55e5e;
   --success: #5e8e76;
 }
@@ -55,9 +53,8 @@ html, body {
 }
 
 
-/* Faqs.module.css */
 .articleFaqs {
-  min-width: 1200px;
+  max-width: 1200px;
   min-height: 50vh; 
   margin: 0 auto !important;
 }
@@ -75,7 +72,7 @@ html, body {
 }
 
 
-.articleFaqs {
+.articleFaqs .accordion {
   max-width: 900px;
   margin: 0 auto;
 }

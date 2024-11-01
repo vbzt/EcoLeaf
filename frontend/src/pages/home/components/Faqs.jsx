@@ -2,7 +2,7 @@ import styles from './Faqs.module.css';
 
 const Faqs = () => {
     return (
-        <section id="article-faqs" className={`articleFaqs ${styles.articleFaqs}`}>
+        <section className={` articleFaqs`}>
             <p className={`text-center text-large ${styles.textLarge}`}>FAQ's</p>
             <div className="d-flex justify-content-center">
                 <span className={styles.linha}></span>

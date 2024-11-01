@@ -57,6 +57,12 @@ const Header = () => {
                     <li className="nav-item">
                         <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Contate-nos </NavLink>
                     </li>
+                    <li className="nav-item">
+                        <NavLink to="/register" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }>Registrar-se </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink to="/checkuser" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> check </NavLink>
+                    </li>
                 </ul>
             </nav>
             <div className={styles.menu}>
