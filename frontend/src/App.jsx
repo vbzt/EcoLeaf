@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { UserProvider } from './context/userContext'
 
 import PrivateRoutes from './utils/PrivateRoutes'
+import CreatePost from './pages/blog/create/CreatePost'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
 
             <Route element = {<PrivateRoutes></PrivateRoutes>}>
                 <Route path = '/blog' element = {<Blog></Blog>}></Route>
+                <Route path = '/blog/create' element = {<CreatePost></CreatePost>}></Route>
                 <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
             </Route>
 

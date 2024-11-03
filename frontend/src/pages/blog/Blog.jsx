@@ -1,11 +1,27 @@
 import Input from '../../components/form/Input'
 import './Blog.css'
 import SearchIcon from '../../assets/images/svg/LupaVerde.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import api from '../../utils/api'
+import Post from '../../components/posts/Post'
+import { NavLink } from 'react-router-dom'
+import useBlog from '../../hooks/useBlog'
 
 const Blog = () => {
 
+  const {fetchData} = useBlog()
+
   const [search, setSearch] = useState({})
+
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await fetchData()
+      setPosts(data)
+    }
+    getPosts()
+  }, [])
 
   const handleSearch = (e) => { 
     setSearch({...search, [e.target.name]: e.target.value})
@@ -18,7 +34,9 @@ const Blog = () => {
 
 
 
-  return (
+
+
+  return  (
     <section className='blog'>
       <header className="blogHeader">
 
@@ -30,12 +48,12 @@ const Blog = () => {
           <form> 
             <Input type= 'hidden' name = 'search' value={search}></Input>
             <Input type= 'hidden' name = 'order' value='new'></Input>
-            <button type="submit"><i class="fa-solid fa-arrow-up"></i></button>
+            <button type="submit"><i className="fa-solid fa-arrow-up"></i></button>
           </form>
           <form> 
             <Input type= 'hidden' name = 'search' value={search}></Input>
             <Input type= 'hidden' name = 'order' value='old'></Input>
-            <button type="submit"><i class="fa-solid fa-arrow-down"></i></button>
+            <button type="submit"><i className="fa-solid fa-arrow-down"></i></button>
           </form>
         </div>
       </header>
@@ -45,13 +63,14 @@ const Blog = () => {
       </div>
 
       <div className="addPost">
-        <a href="/blog/create"><button>Adicionar Post</button></a>
+        <NavLink to= '/blog/create'><button>Adicionar Post</button></NavLink>
       </div>
 
       <div className="posts">
-        <div className="post">
+        { posts.length > 0 && posts.map((post) => (
           
-        </div>
+          <Post key = {post._id} id = {post.user._id} title = {post.title} description={post.description} image={`${import.meta.env.VITE_API}/images/posts/${post.image}`} updatedAt = {post.updatedAt} ></Post>
+        ))}
       </div>
 
     </section>

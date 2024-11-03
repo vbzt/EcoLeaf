@@ -1,6 +1,6 @@
 import styles from './Input.module.css'
 
-const Input = ({ type, label, name, placeholder, handleOnChange, value, required, accept }) => {
+const Input = ({ type, label, name, placeholder, handleOnChange, value, required, accept, inputRef}) => {
   return (
     <div className= {`${styles.formGroup} mb-3`}>
       <label htmlFor={name} className="form-label">{label}:</label>
@@ -14,6 +14,7 @@ const Input = ({ type, label, name, placeholder, handleOnChange, value, required
         value={value}
         required={required}
         accept={type === 'file' ? 'image/png, image/jpeg' : undefined}
+        ref = {inputRef}
       />
     </div>
   )

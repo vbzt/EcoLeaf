@@ -1,8 +1,7 @@
 .blog{
-  width: 60%;
+  width: 40%;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 2cqh;
 }
@@ -84,6 +83,12 @@
   border-radius: 3px;
   background-color: #198754;
   width: 100%;
+}
+
+.posts{ 
+  display: flex;
+  flex-direction: column;
+  gap: 5cqh ;
 }
 
 @media(max-width: 1000px){ 
