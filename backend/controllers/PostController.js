@@ -12,7 +12,7 @@ class PostController {
 
   static async create(req, res){
 
-    const { title } = req.body
+    const { title, description } = req.body
     const image = req.file ? req.file.filename : ''
 
     const user = await getUserById(req.session.userId)
@@ -22,8 +22,15 @@ class PostController {
       return
     }
 
+    if(!description){
+      res.status(422).json({message: 'A descrição do post é obrigatória!'})
+      return
+    }
+
+  
+
     try{
-      const post = new Post({title, image, user: {_id: user._id, email: user.email}})
+      const post = new Post({title, description, image, user: {_id: user._id, email: user.email}})
       const newPost = await post.save()
       res.status(201).json({message: 'Post criado com sucesso!', newPost})
     }catch(e){
@@ -44,7 +51,7 @@ class PostController {
     const user = await getUserById(id)
     const post = await Post.findById(postId)
 
-    const { title } = req.body
+    const { title, description } = req.body
     const image = req.file ? req.file.filename : ''
     
    if(user._id.toString() !== post.user._id.toString()){
@@ -56,6 +63,10 @@ class PostController {
     res.status(422).json({message: 'O título do post é obrigatório!'})
     return
   }
+  if(!description){
+   res.status(422).json({message: 'A descrição do post é obrigatória!'})
+   return
+ }
 
   newPlant = {...req.body}
   newPlant.image = req.file ? req.file.filename : ''
