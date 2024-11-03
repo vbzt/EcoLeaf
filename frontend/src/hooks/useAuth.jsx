@@ -1,58 +1,88 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../utils/api';
-import useFlashMessage from './useFlashMessage';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import api from '../utils/api'
+import useFlashMessage from './useFlashMessage'
 
 const useAuth = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  const { setFlashMessage } = useFlashMessage();
-  const navigate = useNavigate();
+  const [authenticated, setAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const { setFlashMessage } = useFlashMessage()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    checkUser(); // Verifica a autenticação ao montar o componente
-  }, []);
+    checkUser()
+  }, [])
 
   const checkUser = async () => {
     try {
-      const { data } = await api.get('/users/checkuser', { withCredentials: true });
-      setAuthenticated(!!data.currentUser); // Atualiza o estado baseado na resposta
+      const { data } = await api.get('/users/checkuser', { withCredentials: true })
+      setAuthenticated(!!data.currentUser)
     } catch (error) {
-      setAuthenticated(false); // Se houver erro, assume que não está autenticado
+      setAuthenticated(false)
+    } finally {
+      setLoading(false)
     }
-  };
+  }
+
+  const register = async (user) => { 
+    let msgText = 'Cadastro realizado com sucesso!'
+    let msgType = 'success'
+
+    try {
+      const { data } = await api.post('/users/register', user, { withCredentials: true })
+      setAuthenticated(true)
+      navigate('/')
+    } catch (error) {
+      msgText = error.response.data.message
+      msgType = 'error'
+    }
+
+    setFlashMessage(msgText, msgType)
+  }
 
   const login = async (user) => {
-    let msgText = 'Login realizado com sucesso!';
-    let msgType = 'success';
+    let msgText = 'Login realizado com sucesso!'
+    let msgType = 'success'
 
     try {
-      await api.post('/users/login', user, { withCredentials: true });
-      await checkUser(); // Verifica o usuário após o login
+      await api.post('/users/login', user, { withCredentials: true })
+      await checkUser()
+      navigate('/')
     } catch (error) {
-      msgText = error.response.data.message;
-      msgType = 'error';
+      msgText = error.response.data.message
+      msgType = 'error'
     }
 
-    setFlashMessage(msgText, msgType);
-  };
+    setFlashMessage(msgText, msgType)
+  }
 
   const logout = async () => {
-    let msgText = 'Logout realizado com sucesso!';
-    let msgType = 'success';
+    let msgText = 'Logout realizado com sucesso!'
+    let msgType = 'success'
 
     try {
-      await api.get('/users/logout', { withCredentials: true });
-      setAuthenticated(false); // Atualiza o estado para deslogado
-      navigate('/login'); // Redireciona para a página de login
+      await api.get('/users/logout', { withCredentials: true })
+      setAuthenticated(false)
+      navigate('/login')
     } catch (error) {
-      msgText = error.response?.data?.message || 'Erro ao fazer logout.';
-      msgType = 'error';
+      msgText = error.response?.data?.message || 'Erro ao fazer logout.'
+      msgType = 'error'
     }
 
-    setFlashMessage(msgText, msgType);
-  };
+    setFlashMessage(msgText, msgType)
+  }
 
-  return { authenticated, login, logout };
-};
+  const getUserById = async (id) => {
+    try {
+      const {data} = await api.get(`/users/${id}`, { withCredentials: true })
+      return data
+    } catch (error) {
+      console.log(error.response.data.message)
+    }
 
-export default useAuth;
+  }
+
+  return { authenticated, loading, login, logout, register, checkUser, getUserById }
+}
+
+export default useAuth
