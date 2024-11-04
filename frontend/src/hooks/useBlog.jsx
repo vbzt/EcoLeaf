@@ -7,10 +7,16 @@ const useBlog = () => {
   const navigate = useNavigate()
   const { setFlashMessage } = useFlashMessage()
 
-  const fetchData = async () => {
-    const { data } = await api.get('/blog', {withCredentials: true})
-    return data.postsData
+  const fetchData = async (search = '', order = 'new') => {
+    try {
+      const { data} = await api.get(`/blog?search=${search}&order=${order}`)
+      return data.postsData
+    } catch (error) {
+      console.error("Erro ao buscar posts:", error)
+      return { postsData: [] }
+    }
   }
+
 
   const create = async (post) => {
     let msgText = 'Post criado com sucesso!'

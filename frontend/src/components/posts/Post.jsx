@@ -16,7 +16,6 @@ const Post = ({ title, description, image, id, updatedAt }) => {
       const { user } = await getUserById(id)
       setUsername(user.username)
       setTimestamp(moment(updatedAt).fromNow())
-      console.log(updatedAt)
     }
   
     fetchPostData()
