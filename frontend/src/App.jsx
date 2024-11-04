@@ -16,6 +16,7 @@ import { UserProvider } from './context/userContext'
 
 import PrivateRoutes from './utils/PrivateRoutes'
 import CreatePost from './pages/blog/create/CreatePost'
+import Ia from './pages/IA/Ia'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Container>
           <Routes>
             <Route path = '/' element = {<Home></Home>}></Route>
+            <Route path = '/plantas/ia' element = {<Ia></Ia>}></Route>
             <Route path = '/register' element = {<Register></Register>}></Route>
             <Route path = '/login' element = {<Login></Login>}></Route>
 
