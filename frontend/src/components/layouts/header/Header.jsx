@@ -83,6 +83,12 @@ const Header = () => {
                                  </>
                             )
                     }
+
+                    
+                    <li className="nav-item">
+                        <NavLink to="/plantas/ia" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Nossa IA </NavLink>
+                    </li>
+
                     
                 </ul>
             </nav>
