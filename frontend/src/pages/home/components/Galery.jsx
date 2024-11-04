@@ -73,7 +73,7 @@ const Galery = () => {
         {galeriaItems.map((item, index) => (
           <div key={index} style={{padding: 0, cursor: 'pointer'}} className="col-md-3 position-relative">
             <div className={styles.imageContainer}>
-              <img src={item.src} className="img-fluid" alt={item.alt} />
+              <img src={item.src} className= {`img-fluid ${styles.image}`} alt={item.alt} />
               <div className={`${styles.overlayGalery} d-flex justify-content-center align-items-center flex-column`}>
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.subtitle}>{item.subtitle}</p>

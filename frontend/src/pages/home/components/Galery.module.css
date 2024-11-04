@@ -21,9 +21,9 @@
   overflow: hidden;
 }
 
-.img-fluid {
+.image{
   display: block;
-  width: 100%;
+  min-width: 100%;
   height: auto;
 }
 
