@@ -5,9 +5,27 @@ const { ObjectId } = require('mongodb')
 
 class PostController {
   static async showPosts(req, res) {
-    const postsData = await Post.find().sort('-createdAt')
-    res.status(200).json({postsData})
+    const searchQuery = req.query.search || ''
+  
+    try {
+      let postsData
+      if (searchQuery) {
+        postsData = await Post.find({
+          $or: [
+            { title: { $regex: searchQuery, $options: 'i' } },
+            { description: { $regex: searchQuery, $options: 'i' } }
+          ]
+        }).sort('-createdAt')
+      } else {
+        postsData = await Post.find().sort('-createdAt')
+      }
+  
+      res.status(200).json({postsData})
+    } catch (e) {
+      res.status(500).json({ message: 'Erro ao buscar posts', error: e })
+    }
   }
+  
 
 
   static async create(req, res){
