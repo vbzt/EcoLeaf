@@ -41,4 +41,13 @@
   max-height: calc(100% - 10vh);
 }
 
+.options{ 
+  display: flex;
+  justify-content: space-between;
+}
 
+.options a, .options P {
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -3,8 +3,9 @@ import moment from 'moment'
 import 'moment/dist/locale/pt-br'
 import styles from './Post.module.css'
 import { Context } from '../../context/userContext'
+import { NavLink } from 'react-router-dom'
 
-const Post = ({ title, description, image, id, updatedAt }) => {
+const Post = ({ title, description, image, id, updatedAt, user }) => {
   const { getUserById } = useContext(Context)
   const [username, setUsername] = useState('')
   const [timestamp, setTimestamp] = useState('')
@@ -35,6 +36,13 @@ const Post = ({ title, description, image, id, updatedAt }) => {
           Por: <span className='colored'>{username}</span>
         </p>
         <p className={styles.timestamp}>{timestamp}</p>
+
+        {user && ( 
+          <div className= {styles.options}>
+            <NavLink className = 'colored' to={`/blog/edit/${id} `}>Editar</NavLink>
+            <p className='error'>Deletar</p>
+          </div>
+        )}
       </div>
     </div>
   )

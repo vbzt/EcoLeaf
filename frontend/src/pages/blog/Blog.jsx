@@ -14,7 +14,7 @@ const Blog = () => {
   const [posts, setPosts] = useState([])
 
   const loadPosts = async () => {
-    const data = await fetchData(search, order)
+    const data = await fetchData(search)
     setPosts(data)
   }
 
