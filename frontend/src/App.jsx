@@ -17,6 +17,7 @@ import { UserProvider } from './context/userContext'
 import PrivateRoutes from './utils/PrivateRoutes'
 import CreatePost from './pages/blog/create/CreatePost'
 import Ia from './pages/IA/Ia'
+import Profile from './pages/profile/Profile'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
                 <Route path = '/blog' element = {<Blog></Blog>}></Route>
                 <Route path = '/blog/create' element = {<CreatePost></CreatePost>}></Route>
                 <Route path = '/contate-nos' element = {<Contact></Contact>}></Route>
+                <Route path = '/profile' element = {<Profile></Profile>}></Route>
             </Route>
 
           </Routes>
