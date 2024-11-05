@@ -115,6 +115,30 @@ class PostController {
     res.status(200).json({message: 'Post excluido com sucesso'})
   }
 
+  static async getPostById(req,res){ 
+    const { id } = req.params
+    const user = await getUserById(req.session.userId)
+
+    if(!ObjectId.isValid(id)){ 
+      res.status(422).json({message: 'ID Invalido'})
+      return
+    }
+
+    if(user._id.toString() !== post.user._id.toString()){
+      res.status(401).json({message: 'Ocorreu um erro! Tente novamente mais tarde'})
+      return
+     }
+
+     const post = await Post.findById(id)  
+     
+     if(!post){ 
+      res.status(422).json({message: 'Post não encontrado!'}) 
+     }
+
+     res.status(200).json({post})
+ 
+  }
+
 
 }
 

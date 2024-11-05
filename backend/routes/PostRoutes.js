@@ -8,8 +8,8 @@ router.get('/', PostController.showPosts)
 
 router.post('/create', checkAuth, imageUpload.single("image"), PostController.create)
 
+router.get('/:id', checkAuth, PostController.getPostById)
 router.patch('/:id', checkAuth, imageUpload.single("image"), PostController.edit)
-
 router.delete('/:id', checkAuth, PostController.remove)
 
 module.exports = router
