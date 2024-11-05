@@ -15,10 +15,6 @@
   min-width: 100%;
 }
 
-.order{
-  display: flex;
-}
-
 .blogHeader form{
   width: 100%;
   display: flex;
@@ -27,7 +23,7 @@
 
 
 .blogHeader form label{ 
-  display: none;
+  display: none
 }
 
 .blogHeader form div{

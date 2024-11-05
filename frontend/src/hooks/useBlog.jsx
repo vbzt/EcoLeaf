@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../utils/api'
 import useFlashMessage from './useFlashMessage'
@@ -7,16 +6,15 @@ const useBlog = () => {
   const navigate = useNavigate()
   const { setFlashMessage } = useFlashMessage()
 
-  const fetchData = async (search = '', order = 'new') => {
+  const fetchData = async (search = '') => {
     try {
-      const { data} = await api.get(`/blog?search=${search}&order=${order}`)
+      const { data } = await api.get(`/blog?search=${search}`)
       return data.postsData
     } catch (error) {
       console.error("Erro ao buscar posts:", error)
       return { postsData: [] }
     }
   }
-
 
   const create = async (post) => {
     let msgText = 'Post criado com sucesso!'
@@ -33,7 +31,32 @@ const useBlog = () => {
     setFlashMessage(msgText, msgType)
   }
 
-  return { fetchData, create }
+  const edit = async (post, id) => {
+    let msgText = 'Post editado com sucesso!'
+    let msgType = 'success'
+    
+    try {
+      const { data } = await api.patch(`/blog/${id}`, post, { withCredentials: true })
+      navigate('/blog')
+    } catch (error) {
+      msgText = error.response.data.message
+      msgType = 'error'
+    }
+
+    setFlashMessage(msgText, msgType)
+  }
+  
+  const getPostById = async (id) => { 
+    try {
+      const {data} = await api.get(`/blog/${id}`, { withCredentials: true })
+      return data
+    } catch (error) {
+      console.log(error.response.data.message)
+      return null
+    }
+  }
+
+  return { fetchData, create, edit, getPostById }
 }
 
 export default useBlog

@@ -66,8 +66,8 @@ const Header = () => {
                                         <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Contate-nos </NavLink>
                                     </li>
 
-                                    <li className="nav-item" onClick={logout}>
-                                        <a className = { `nav-link ${styles.navLink}  text-light` }>Sair</a>
+                                    <li className="nav-item">
+                                        <NavLink to="/profile" className={({ isActive }) => `nav-link ${styles.navLink}  ${isActive ? styles.navLinkActive : "text-light"}` }> Perfil </NavLink>
                                     </li>
                                 </>
                             )

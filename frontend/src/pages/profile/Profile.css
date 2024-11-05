@@ -1,0 +1,55 @@
+.profile{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2cqh;
+}
+
+
+.profileHeader{ 
+  display: flex;
+  flex-direction: column;
+  gap: 2cqh;
+  min-width: 100%;
+}
+
+.profileTitle h3{ 
+  color: #797D79
+}
+
+.editProfile a{
+  color: #fff;
+  font-weight: 600;
+  width: 100%;
+}
+
+.editProfile button{
+  padding: 1.5cqh;
+  border-radius: 3px;
+  background-color: #198754;
+  width: 100%;
+}
+
+.leave p{ 
+  font-size: 1.8cqh;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.options{ 
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options .colored{ 
+  color: #198754;
+}
+
+.options span{ 
+  font-size: 2cqh;
+  cursor: pointer;
+  font-weight: 600;
+  color: #797D79;
+}

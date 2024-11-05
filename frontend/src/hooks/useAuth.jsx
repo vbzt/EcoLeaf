@@ -17,6 +17,7 @@ const useAuth = () => {
     try {
       const { data } = await api.get('/users/checkuser', { withCredentials: true })
       setAuthenticated(!!data.currentUser)
+      return data
     } catch (error) {
       setAuthenticated(false)
     } finally {
