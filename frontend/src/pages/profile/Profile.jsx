@@ -24,7 +24,6 @@ const Profile = () => {
       const currentUser = await fetchUserData()
       const posts = await fetchData()
       const userPosts = posts.filter((post) => post.user._id === currentUser._id)
-      console.log(userPosts)
       setPosts(userPosts)
     }
     
@@ -57,6 +56,7 @@ const Profile = () => {
           <Post
             key={post._id}
             id={post.user._id}
+            postId = {post._id}
             title={post.title}
             description={post.description}
             image={`${import.meta.env.VITE_API}/images/posts/${post.image}`}
