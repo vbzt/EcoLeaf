@@ -5,7 +5,7 @@ import styles from './Post.module.css'
 import { Context } from '../../context/userContext'
 import { NavLink } from 'react-router-dom'
 
-const Post = ({ title, description, image, id, updatedAt, user }) => {
+const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
   const { getUserById } = useContext(Context)
   const [username, setUsername] = useState('')
   const [timestamp, setTimestamp] = useState('')
@@ -39,7 +39,7 @@ const Post = ({ title, description, image, id, updatedAt, user }) => {
 
         {user && ( 
           <div className= {styles.options}>
-            <NavLink className = 'colored' to={`/blog/edit/${id} `}>Editar</NavLink>
+            <NavLink className = 'colored' to={`/blog/edit/${postId} `}>Editar</NavLink>
             <p className='error'>Deletar</p>
           </div>
         )}

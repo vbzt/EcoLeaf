@@ -99,6 +99,11 @@ html, body {
   box-shadow: none;
 }
 
+.imgPreview{ 
+  width: 100%;
+}
+
 section{
   min-width: 80vw;
 }
+

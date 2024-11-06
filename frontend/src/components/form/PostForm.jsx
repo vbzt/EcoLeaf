@@ -2,28 +2,40 @@ import React, { useState, useRef, useEffect } from 'react'
 import Input from './Input'
 import Textarea from './Textarea'
 
-const PostForm = ({ postData, onSubmit }) => {
+const PostForm = ({ postData = {}, onSubmit }) => {
   const fileInputRef = useRef(null)
-  
-  const initializePost = () => ({
-    title: postData?.title || "",
-    description: postData?.description || "",
-    image: postData?.image || null
-  })
-
-  const [post, setPost] = useState(initializePost)
+  const [post, setPost] = useState({}) 
+  const [preview, setPreview] = useState(null)
 
   useEffect(() => {
-    setPost(initializePost)
-  }, [postData])
+    const initializePost = () => ({
+      title: postData.title || "",
+      description: postData.description || "",
+      image: postData?.image || null,
+    });
+  
+    setPost(initializePost);
+    if (postData.image) {
+      setPreview(`${import.meta.env.VITE_API}/images/posts/${postData.image}`);
+    } else {
+      setPreview(null);
+    }
+  }, []); // Adicionando postData como dependência
+  
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setPost({ ...post, image: file })
+    if (file) {
+      setPreview(URL.createObjectURL(file)) 
+    } else {
+      setPreview(null) 
+    }
   }
 
   const clearPhoto = () => {
     setPost({ ...post, image: null })
+    setPreview(null) 
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
@@ -49,7 +61,7 @@ const PostForm = ({ postData, onSubmit }) => {
       <div className="d-flex justify-content-center flex-column align-items-center container">
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
           <form className="form-bg card p-3 d-flex flex-column align-items-center" onSubmit={handleSubmit}>
-            <h1 className="mb-4 text-center">{postData ? "Editar Post" : "Criar Post"}</h1>
+            <h1 className="mb-4 text-center">{postData.title ? "Editar Post" : "Criar Post"}</h1>
             
             <Input
               type="text"
@@ -77,12 +89,12 @@ const PostForm = ({ postData, onSubmit }) => {
             />
 
             <div>
-              {post.image ? (
+              {preview ? ( 
                 <div>
                   <img
-                    src={post.image instanceof File ? URL.createObjectURL(post.image) : `${import.meta.env.VITE_API}/images/posts/${post.image}`}
+                    src={preview}
                     alt="Pré-visualização"
-                    className="img-preview"
+                    className="imgPreview"
                   />
                   <span onClick={clearPhoto} className="text-danger pointer">Remover</span>
                 </div>
