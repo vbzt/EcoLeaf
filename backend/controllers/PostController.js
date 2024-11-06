@@ -59,7 +59,7 @@ class PostController {
   static async edit(req, res) {
     const id = req.session.userId
     const postId = req.params.id
-    let newPlant = {}
+    let newPost = {}
 
     if(!ObjectId.isValid(postId)){ 
       res.status(422).json({message: 'ID Invalido'})
@@ -86,11 +86,11 @@ class PostController {
    return
  }
 
-  newPlant = {...req.body}
-  newPlant.image = req.file ? req.file.filename : ''
+  newPost = {...req.body}
+  newPost.image = req.file ? req.file.filename : ''
                                                  
-  await Post.findByIdAndUpdate(postId, newPlant)
-  res.status(200).json({message: 'Post atualizado com sucesso', newPlant})
+  await Post.findByIdAndUpdate(postId, newPost)
+  res.status(200).json({message: 'Post atualizado com sucesso', newPost})
 
 }
 

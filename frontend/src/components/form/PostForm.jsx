@@ -2,25 +2,24 @@ import React, { useState, useRef, useEffect } from 'react'
 import Input from './Input'
 import Textarea from './Textarea'
 
-const PostForm = ({ postData = {}, onSubmit }) => {
+const PostForm = ({ postData, onSubmit }) => {
   const fileInputRef = useRef(null)
-  const [post, setPost] = useState({}) 
+  const [post, setPost] = useState(postData || {}) 
   const [preview, setPreview] = useState(null)
 
   useEffect(() => {
     const initializePost = () => ({
-      title: postData.title || "",
-      description: postData.description || "",
-      image: postData?.image || null,
-    });
-  
-    setPost(initializePost);
-    if (postData.image) {
-      setPreview(`${import.meta.env.VITE_API}/images/posts/${postData.image}`);
+      title: postData?.title,
+      description: postData?.description,
+      image: postData?.image,
+    })
+    setPost(initializePost)
+    if (postData?.image) {
+      setPreview(`${import.meta.env.VITE_API}/images/posts/${postData.image}`)
     } else {
-      setPreview(null);
+      setPreview(null)
     }
-  }, []); // Adicionando postData como dependência
+  }, [postData]) 
   
 
   const handleFileChange = (e) => {
@@ -61,7 +60,7 @@ const PostForm = ({ postData = {}, onSubmit }) => {
       <div className="d-flex justify-content-center flex-column align-items-center container">
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
           <form className="form-bg card p-3 d-flex flex-column align-items-center" onSubmit={handleSubmit}>
-            <h1 className="mb-4 text-center">{postData.title ? "Editar Post" : "Criar Post"}</h1>
+            <h1 className="mb-4 text-center">{postData?.title ? "Editar Post" : "Criar Post"}</h1>
             
             <Input
               type="text"

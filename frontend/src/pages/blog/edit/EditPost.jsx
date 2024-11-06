@@ -18,14 +18,32 @@ const EditPost = () => {
     getPost()
     
   }, [])
-
-  const handleSubmit = () => { 
-    edit(post, params.id)
+  async function updatePost(post) {
+    const formData = new FormData();
+  
+    Object.keys(post).forEach((key) => {
+      if (key === 'image' && post[key]) {
+        formData.append(key, post[key]);  // Append the single image (file)
+      } else {
+        formData.append(key, post[key]);  // Append other fields
+      }
+    });
+  
+    // Debug log (optional, can be removed later)
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+  }
+  
+  
+  const handleSubmit = async () => { 
+    await updatePost(post)
+    await edit(post, params.id)
   }
 
   return (
     <PostForm postData={post} onSubmit={handleSubmit} />
   ) 
 }
-
+ 
 export default EditPost
