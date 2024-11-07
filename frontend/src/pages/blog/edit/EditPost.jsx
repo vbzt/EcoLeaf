@@ -1,49 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostForm from '../../../components/form/PostForm'
-import { Context } from '../../../context/userContext'
 import useBlog from '../../../hooks/useBlog'
 import { useParams } from 'react-router-dom'
 
 const EditPost = () => {
-  const { getPostById, edit} = useBlog() 
+  const { getPostById, edit } = useBlog()
   const params = useParams()
-  const [post, setPost] = useState({})
+  const [initialPost, setPost] = useState({})
 
-  useEffect(() => {   
-    const getPost = async () => { 
+  useEffect(() => {
+    const getPost = async () => {
       const { post } = await getPostById(params.id)
-      setPost(post)
+      if (post) {
+        setPost(post)
+      }
     }
 
     getPost()
-    
-  }, [])
-  async function updatePost(post) {
-    const formData = new FormData();
-  
+  }, [params.id]) 
+
+  const updatePost = async (post) => {
+    const formData = new FormData()
+
     Object.keys(post).forEach((key) => {
-      if (key === 'image' && post[key]) {
-        formData.append(key, post[key]);  // Append the single image (file)
+      if (key === 'user') {
+        Object.keys(post[key]).forEach((userKey) => {
+          formData.append(`${key}[${userKey}]`, post[key][userKey])
+        })
+      } else if (key === 'image' && post[key]) {
+        formData.append('image', post[key])
       } else {
-        formData.append(key, post[key]);  // Append other fields
+        formData.append(key, post[key])
       }
-    });
-  
-    // Debug log (optional, can be removed later)
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
+    })
+
+    await edit(formData, params.id)
   }
-  
-  
-  const handleSubmit = async () => { 
+
+  const handleSubmit = async (post) => {
     await updatePost(post)
-    await edit(post, params.id)
   }
 
   return (
-    <PostForm postData={post} onSubmit={handleSubmit} />
-  ) 
+    <PostForm postData={initialPost} handleSubmit={handleSubmit} />
+  )
 }
- 
+
 export default EditPost

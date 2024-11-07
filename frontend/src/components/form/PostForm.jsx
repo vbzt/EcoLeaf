@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Input from './Input'
 import Textarea from './Textarea'
 
@@ -7,7 +7,26 @@ const PostForm = ({ postData, handleSubmit }) => {
   const [preview, setPreview] = useState(null)
   const fileInputRef = useRef(null)
 
-  const onFileChange = (e) => { 
+  useEffect(() => {
+    setPost(postData)
+  }, [postData])
+
+  useEffect(() => {
+    if (postData?.image) {
+      const url = `${import.meta.env.VITE_API}/images/posts/${postData.image}`
+      setPreview(url)
+
+      fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const file = new File([blob], postData.image, { type: blob.type })
+          setPost((prevPost) => ({ ...prevPost, image: file }))
+        })
+        .catch((error) => console.error('Erro ao carregar a imagem como File:', error))
+    }
+  }, [postData?.image])
+
+  const onFileChange = (e) => {
     const file = e.target.files[0]
     if (file) {
       const previewUrl = URL.createObjectURL(file)
@@ -16,16 +35,22 @@ const PostForm = ({ postData, handleSubmit }) => {
     }
   }
 
-  const handleChange = (e) => { 
+  const loadImage = async (url) => { 
+    const response = await fetch(url)
+    const blob = response.blob()
+    
+  }
+
+  const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value })
   }
 
-  const submit = (e) => { 
+  const submit = (e) => {
     e.preventDefault()
     handleSubmit(post)
   }
 
-  const clearPhoto = async () => { 
+  const clearPhoto = async () => {
     setPost({ ...post, image: null })
     setPreview(null)
     if (fileInputRef.current) {
@@ -38,14 +63,14 @@ const PostForm = ({ postData, handleSubmit }) => {
       <div className="d-flex justify-content-center flex-column align-items-center container">
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
           <form className="form-bg card p-3 d-flex flex-column align-items-center" onSubmit={submit}>
-            <h1 className="mb-4 text-center">{postData?.title ? "Editar Post" : "Criar Post"}</h1>
+            <h1 className="mb-4 text-center">{postData?.title ? 'Editar Post' : 'Criar Post'}</h1>
             
             <Input
               type="text"
               label="Título do post"
               name="title"
               placeholder="Digite o título de seu post"
-              value={post.title}
+              value={post?.title}
               handleOnChange={handleChange}
             />
 
@@ -53,7 +78,7 @@ const PostForm = ({ postData, handleSubmit }) => {
               label="Descrição do Post"
               name="description"
               placeholder="Digite a descrição do post"
-              value={post.description}
+              value={post?.description}
               handleOnChange={handleChange}
             />
 
@@ -66,7 +91,7 @@ const PostForm = ({ postData, handleSubmit }) => {
             />
 
             <div>
-              {preview ? ( 
+              {preview ? (
                 <div>
                   <img
                     src={preview}
@@ -75,7 +100,7 @@ const PostForm = ({ postData, handleSubmit }) => {
                   />
                   <span onClick={clearPhoto} className="text-danger pointer">Remover</span>
                 </div>
-              ) : <></>}
+              ) : null}
             </div>
 
             <div className="button-group mt-4 d-flex justify-content-center">

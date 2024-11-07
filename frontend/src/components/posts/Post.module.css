@@ -36,9 +36,11 @@
   width: 100%;
 }
 
-.postBody img{ 
+.postBody img { 
   width: 100%;
-  max-height: calc(100% - 10vh);
+  max-width: 100%; 
+  max-height: 50vh; 
+  object-fit: contain; 
 }
 
 .options{ 

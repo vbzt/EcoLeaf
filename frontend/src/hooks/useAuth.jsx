@@ -28,7 +28,7 @@ const useAuth = () => {
   const register = async (user) => { 
     let msgText = 'Cadastro realizado com sucesso!'
     let msgType = 'success'
-
+    
     try {
       const { data } = await api.post('/users/register', user, { withCredentials: true })
       setAuthenticated(true)

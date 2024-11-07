@@ -65,8 +65,7 @@ const useBlog = () => {
       const {data} = await api.get(`/blog/${id}`, { withCredentials: true })
       return data
     } catch (error) {
-      console.log(error.response.data.message)
-      return null
+      navigate('/blog/create')
     }
   }
 
