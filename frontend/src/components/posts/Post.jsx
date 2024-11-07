@@ -4,11 +4,13 @@ import 'moment/dist/locale/pt-br'
 import styles from './Post.module.css'
 import { Context } from '../../context/userContext'
 import { NavLink } from 'react-router-dom'
+import useBlog from '../../hooks/useBlog'
 
 const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
   const { getUserById } = useContext(Context)
   const [username, setUsername] = useState('')
   const [timestamp, setTimestamp] = useState('')
+  const { remove } = useBlog()
 
   useEffect(() => {
     moment.locale('pt-br')
@@ -21,6 +23,11 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
   
     fetchPostData()
   }, [id, getUserById, updatedAt])
+
+
+  const removePost = async ( id ) => { 
+    remove(id)
+  }
 
   return (
     <div key={id} className={styles.post}>
@@ -40,7 +47,7 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
         {user && ( 
           <div className= {styles.options}>
             <NavLink className = 'colored' to={`/blog/edit/${postId} `}>Editar</NavLink>
-            <p className='error'>Deletar</p>
+            <p className='error' onClick={() => { removePost(postId) }} >Deletar</p>
           </div>
         )}
       </div>

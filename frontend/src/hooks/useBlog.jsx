@@ -22,7 +22,7 @@ const useBlog = () => {
     
     try {
       const { data } = await api.post('/blog/create', post, { withCredentials: true })
-      navigate('/blog')
+      navigate('/profile')
     } catch (error) {
       msgText = error.response.data.message
       msgType = 'error'
@@ -45,6 +45,20 @@ const useBlog = () => {
 
     setFlashMessage(msgText, msgType)
   }
+
+  const remove = async(id) => { 
+    let msgText = 'Post removido com sucesso!'
+    let msgType = 'success'
+
+    try{ 
+      const { data } = await api.delete(`/blog/${id}`, { withCredentials: true })
+      navigate('/profile')
+    }catch(e){ 
+      msgText = e.response.data.message 
+      msgType = 'error'
+    }
+    setFlashMessage(msgText, msgType)
+  }
   
   const getPostById = async (id) => { 
     try {
@@ -56,7 +70,7 @@ const useBlog = () => {
     }
   }
 
-  return { fetchData, create, edit, getPostById }
+  return { fetchData, create, edit, getPostById, remove }
 }
 
 export default useBlog

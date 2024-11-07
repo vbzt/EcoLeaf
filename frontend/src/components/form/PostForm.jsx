@@ -1,57 +1,35 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import Input from './Input'
 import Textarea from './Textarea'
 
-const PostForm = ({ postData, onSubmit }) => {
-  const fileInputRef = useRef(null)
-  const [post, setPost] = useState(postData || {}) 
+const PostForm = ({ postData, handleSubmit }) => {
+  const [post, setPost] = useState(postData || {})
   const [preview, setPreview] = useState(null)
+  const fileInputRef = useRef(null)
 
-  useEffect(() => {
-    const initializePost = () => ({
-      title: postData?.title,
-      description: postData?.description,
-      image: postData?.image,
-    })
-    setPost(initializePost)
-    if (postData?.image) {
-      setPreview(`${import.meta.env.VITE_API}/images/posts/${postData.image}`)
-    } else {
-      setPreview(null)
-    }
-  }, [postData]) 
-  
-
-  const handleFileChange = (e) => {
+  const onFileChange = (e) => { 
     const file = e.target.files[0]
-    setPost({ ...post, image: file })
     if (file) {
-      setPreview(URL.createObjectURL(file)) 
-    } else {
-      setPreview(null) 
+      const previewUrl = URL.createObjectURL(file)
+      setPreview(previewUrl)
+      setPost({ ...post, image: file })
     }
   }
 
-  const clearPhoto = () => {
-    setPost({ ...post, image: null })
-    setPreview(null) 
-    if (fileInputRef.current) fileInputRef.current.value = ''
-  }
-
-  const handleChange = (e) => {
+  const handleChange = (e) => { 
     setPost({ ...post, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e) => {
+  const submit = (e) => { 
     e.preventDefault()
-    const formData = new FormData()
-    
-    Object.entries(post).forEach(([key, value]) => {
-      formData.append(key, value)
-    })
-    
-    if (onSubmit) {
-      await onSubmit(formData)
+    handleSubmit(post)
+  }
+
+  const clearPhoto = async () => { 
+    setPost({ ...post, image: null })
+    setPreview(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
     }
   }
 
@@ -59,7 +37,7 @@ const PostForm = ({ postData, onSubmit }) => {
     <section>
       <div className="d-flex justify-content-center flex-column align-items-center container">
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
-          <form className="form-bg card p-3 d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+          <form className="form-bg card p-3 d-flex flex-column align-items-center" onSubmit={submit}>
             <h1 className="mb-4 text-center">{postData?.title ? "Editar Post" : "Criar Post"}</h1>
             
             <Input
@@ -83,8 +61,8 @@ const PostForm = ({ postData, onSubmit }) => {
               type="file"
               label="Foto do post"
               name="image"
-              inputRef={fileInputRef}
-              handleOnChange={handleFileChange}
+              handleOnChange={onFileChange}
+              ref={fileInputRef}
             />
 
             <div>
@@ -97,7 +75,7 @@ const PostForm = ({ postData, onSubmit }) => {
                   />
                   <span onClick={clearPhoto} className="text-danger pointer">Remover</span>
                 </div>
-              ) : null}
+              ) : <></>}
             </div>
 
             <div className="button-group mt-4 d-flex justify-content-center">

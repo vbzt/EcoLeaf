@@ -28,7 +28,7 @@ const Profile = () => {
     }
     
     fetchUserPost()
-  }, [])
+  }, [posts])
   
   return (
     <section className='profile'>
