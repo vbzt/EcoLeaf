@@ -1,8 +1,9 @@
+import React, { forwardRef } from 'react'
 import styles from './Input.module.css'
 
-const Input = ({ type, label, name, placeholder, handleOnChange, value, required, accept, inputRef}) => {
+const Input = forwardRef(({ type, label, name, placeholder, handleOnChange, value, required, accept }, ref) => {
   return (
-    <div className= {`${styles.formGroup} mb-3`}>
+    <div className={`${styles.formGroup} mb-3`}>
       <label htmlFor={name} className="form-label">{label}:</label>
       <input 
         type={type} 
@@ -14,10 +15,10 @@ const Input = ({ type, label, name, placeholder, handleOnChange, value, required
         value={value}
         required={required}
         accept={type === 'file' ? 'image/png, image/jpeg' : undefined}
-        ref = {inputRef}
+        ref={ref}
       />
     </div>
   )
-}
+})
 
 export default Input
