@@ -107,6 +107,7 @@ class PlantController  {
         Caso morar em apartamento, uma planta pequena a média 
         E em sítio de pequena a grande 
         O output deve ser retornado em forma de JSON, tendo os seguintes valores 
+        CASO O USUARIO TER PET, NAO RECOMENDE UMA PLANTA VENENOSA
         Retorne SOMENTE o RAW json, sem nenhuma escrita adicional
         - "popular": "Nome da planta"
         - "cientifico": "Nome científico da planta"

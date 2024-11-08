@@ -18,6 +18,7 @@ import CreatePost from './pages/blog/create/CreatePost'
 import EditPost from './pages/blog/edit/EditPost'
 import Contact from './pages/contact/Contact'
 import Profile from './pages/profile/Profile'
+import IaForm from './pages/IA/IaForm/IaForm'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
 
             <Route element={<PrivateRoutes />}>
               <Route path='/blog' element={<Blog />} />
+              <Route path='/plantas/ia/gerar' element={<IaForm />} />
               <Route path='/blog/create' element={<CreatePost />} />
               <Route path='/blog/edit/:id' element={<EditPost />} />
               <Route path='/contate-nos' element={<Contact />} />
