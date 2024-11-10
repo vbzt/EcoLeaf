@@ -93,8 +93,6 @@ class PlantController  {
 
     static async generatePlant(req, res) {
       const { local, climate, humidity, watering, experience, pets,  } = req.body
-      console.log(req.body)
-    
       if (!local || !climate || !humidity || !watering || !experience || !pets) {
           res.status(422).json({ message: 'Responda a todos os passos do formulario!' })
           return
