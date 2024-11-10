@@ -1,0 +1,34 @@
+.loading {
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}
+
+.plantContainer {
+  text-align: left;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.plantContainer h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.plantContainer p {
+  margin: 0.5rem 0;
+}
+
+.plantContainer a {
+  color: #007bff;
+  text-decoration: underline;
+}

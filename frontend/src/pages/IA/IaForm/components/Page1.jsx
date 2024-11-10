@@ -3,23 +3,24 @@ import QuestionPage from '../../../../components/layouts/IA/QuestionPage'
 
 const Page1 = ({ nextStage, onResponse }) => {
   const options = [
-    { value: 'high', label: 'Sou basicamente um botânico expert' },
-    { value: 'moderate', label: 'Consigo manter algumas plantas vivas...' },
-    { value: 'low', label: 'Nunca cuidei nem de plantas de plástico' },
-    { value: 'skip', label: 'Pular questão' },
+    { value: 'casa', label: 'Moro em uma casa' },
+    { value: 'apartamento', label: 'Moro em um apartamento' },
+    { value: 'sítio', label: 'Moro em um lugar aberto, como sítio ou chácaras' },
   ]
 
   const progress = [
-    { name: 'exp', complete: true, label: 'Experiência' },
-    { name: 'pets', complete: false, label: 'Pets' },
-    { name: 'water', complete: false, label: 'Rega' },
-    { name: 'sun', complete: false, label: 'Luz solar' },
+    { name: "Local", complete: true, label: 'Local'},
+    { name: 'Experiência', complete: false, label: 'Experiência'},
+    { name: 'Pets', complete: false, label: 'Pets' },
+    { name: 'Regas', complete: false, label: 'Rega' },
+    { name: 'Clima', complete: false, label: 'Luz solar' },
+    { label: "Humidade", complete: false },
   ]
 
   return (
     <>
       <QuestionPage
-        question="Quanta experiência você tem com plantas?"
+        question="Qual o seu tipo de moradia?"
         imgSrc={img}
         options={options}
         nextStage={nextStage}

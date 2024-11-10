@@ -92,9 +92,10 @@ class PlantController  {
     
 
     static async generatePlant(req, res) {
-      const { location, climate, humidity, waterNeed } = req.body
+      const { local, climate, humidity, watering, experience, pets,  } = req.body
+      console.log(req.body)
     
-      if (!location || !climate || !humidity || !waterNeed) {
+      if (!local || !climate || !humidity || !watering || !experience || !pets) {
           res.status(422).json({ message: 'Responda a todos os passos do formulario!' })
           return
       }
@@ -106,8 +107,10 @@ class PlantController  {
         Caso o usuário morar em casa, uma planta nem muito pequena nem muito grande
         Caso morar em apartamento, uma planta pequena a média 
         E em sítio de pequena a grande 
+        Nunca gere árvores, somente plantas domésticas!
         O output deve ser retornado em forma de JSON, tendo os seguintes valores 
         CASO O USUARIO TER PET, NAO RECOMENDE UMA PLANTA VENENOSA
+        Caso a experiencia do usuario com plantas for baixa, recomende algo mais facil de cuidar
         Retorne SOMENTE o RAW json, sem nenhuma escrita adicional
         - "popular": "Nome da planta"
         - "cientifico": "Nome científico da planta"
@@ -116,10 +119,12 @@ class PlantController  {
         Não use asteriscos (*) nem nenhum caractere especial
         Não gere plantas tóxicas ou venenosas
         Gere:
-        A planta deve se adequar a um(a) ${location},
+        A planta deve se adequar a um(a) ${local},
+        O usuario tem uma experiência ${experience} com plantas
+        E o usuario ${pets} pets
+        E o usuário quer ter um gasto de água ${watering} ao cuidar da planta
         A planta deve se adequar a um clima ${climate},
-        A planta deve se adequar a um ambiente ${humidity}, 
-        E o usuário quer ter um gasto de água ${waterNeed} ao cuidar da planta
+        A planta deve se adequar a um ambiente ${humidity}
       `)
     
       try { 

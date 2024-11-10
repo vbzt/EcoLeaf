@@ -2,30 +2,32 @@ import img from '../../../../assets/images/ia/page3.png'
 import QuestionPage from '../../../../components/layouts/IA/QuestionPage'
 
 const Page3 = ({ nextStage, onResponse }) => {
-  const question = "Você é uma pessoa que tem tempo para regar sua planta?";
   const options = [
-    { value: "high", label: "Sim, tenho todo tempo do mundo" },
-    { value: "moderate", label: "Tenho um minutinho livre no dia" },
-    { value: "low", label: "Não consigo parar nem pra comer" },
-    { value: "skip", label: "Pular questão" },
-  ];
+    { value: 'tem', label: 'Sim' },
+    { value: 'não tem', label: 'Não' },
+  ]
+
   const progress = [
-    { label: "Experiência", complete: true },
-    { label: "Pets", complete: true },
-    { label: "Rega", complete: true },
-    { label: "Luz solar", complete: false },
-  ];
+    { name: "Local", complete: true, label: 'Local'},
+    { name: 'Experiência', complete: true, label: 'Experiência' },
+    { name: 'Pets', complete: true, label: 'Pets' },
+    { name: 'Rega', complete: false, label: 'Rega' },
+    { name: 'Clima', complete: false, label: 'Luz solar' },
+    { label: "Humidade", complete: false},
+  ]
 
   return (
-    <QuestionPage 
-      imgSrc={img}
-      question={question}
-      options={options}
-      progress={progress}
-      nextStage={nextStage}
-      onResponse={onResponse}
-    />
-  );
-};
+    <>
+      <QuestionPage
+        imgSrc={img}
+        question="Você tem pets que poderiam comer a planta?"
+        options={options}
+        nextStage={nextStage}
+        onResponse={onResponse}
+        progress={progress}
+      />
+    </>
+  )
+}
 
-export default Page3;
+export default Page3

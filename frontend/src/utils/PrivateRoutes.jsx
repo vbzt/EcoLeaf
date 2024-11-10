@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
   const { authenticated, loading } = useContext(Context)
 
   if (loading) {
-    return <Outlet/>
+    return <> </>
   }
 
   return authenticated ? <Outlet /> : <Navigate to='/login' />

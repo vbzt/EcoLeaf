@@ -1,19 +1,19 @@
-import img from '../../../../assets/images/ia/page4.png'
+import img from '../../../../assets/images/ia/page5.png'
 import QuestionPage from '../../../../components/layouts/IA/QuestionPage'
 
-const Page4 = ({ nextStage, onResponse }) => {
-  const question = "Você é uma pessoa que tem tempo para regar sua planta?";
+const Page5 = ({ nextStage, onResponse }) => {
+  const question = "Quanta luz solar a planta poderá receber?";
   const options = [
-    { value: "alto", label: "Sim, tenho todo tempo do mundo" },
-    { value: "medio", label: "Tenho um minutinho livre no dia" },
-    { value: "baixo", label: "Não consigo parar nem pra comer" },
+    { value: "high", label: "Ela estará o tempo todo no sol" },
+    { value: "moderate", label: "Ela receberá de tempos em tempos" },
+    { value: "low", label: "Luz solar? O que é isso?" },
   ];
   const progress = [
     { label: "Local", complete: true },
     { label: "Experiência", complete: true },
     { label: "Pets", complete: true },
     { label: "Rega", complete: true },
-    { label: "Clima", complete: false },
+    { label: "Clima", complete: true },
     { label: "Humidade", complete: false },
   ];
 
@@ -29,4 +29,4 @@ const Page4 = ({ nextStage, onResponse }) => {
   );
 };
 
-export default Page4
+export default Page5
