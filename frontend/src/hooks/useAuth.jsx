@@ -57,6 +57,21 @@ const useAuth = () => {
     setFlashMessage(msgText, msgType)
   }
 
+  const edit = async (user, id) => { 
+    let msgText = 'Usuário atualizado com sucesso!'
+    let msgType = 'success'
+
+    try {
+      await api.patch(`/users/edit/${id}`, user, { withCredentials: true })
+      navigate('/profile')
+    } catch (error) {
+      msgText = error.response.data.message
+      msgType = 'error'
+    }
+
+    setFlashMessage(msgText, msgType)
+  }
+
   const logout = async () => {
     let msgText = 'Logout realizado com sucesso!'
     let msgType = 'success'
@@ -83,7 +98,7 @@ const useAuth = () => {
 
   }
 
-  return { authenticated, loading, login, logout, register, checkUser, getUserById }
+  return { authenticated, edit, login, logout, register, checkUser, getUserById, loading}
 }
 
 export default useAuth

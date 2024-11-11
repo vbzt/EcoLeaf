@@ -28,7 +28,7 @@ const Profile = () => {
     }
     
     fetchUserPost()
-  }, [posts])
+  }, [])
   
   return (
     <section className='profile'>
@@ -37,7 +37,7 @@ const Profile = () => {
           <h3>Bem vindo, <span className="colored">{user.username}!</span></h3>
         </div>
         <div className="editProfile">
-          <NavLink to='/profile/edit'>
+          <NavLink to= { `/profile/edit/${user._id}` }>
             <button>Editar Perfil</button>
           </NavLink>
         </div>

@@ -10,15 +10,17 @@ import PrivateRoutes from './utils/PrivateRoutes'
 
 
 import Home from './pages/home/Home'
-import Ia from './pages/IA/Ia'
 import Register from './pages/auth/register/Register'
 import Login from './pages/auth/login/Login'
 import Blog from './pages/blog/Blog'
 import CreatePost from './pages/blog/create/CreatePost'
 import EditPost from './pages/blog/edit/EditPost'
 import Contact from './pages/contact/Contact'
-import Profile from './pages/profile/Profile'
+import Ia from './pages/IA/Ia'
 import IaForm from './pages/IA/IaForm/IaForm'
+import GeneratedPlant from './pages/IA/IaForm/components/GeneratedPlant'
+import Profile from './pages/profile/Profile'
+import EditProfile from './pages/profile/edit/EditProfile'
 
 function App() {
   return (
@@ -37,11 +39,13 @@ function App() {
 
             <Route element={<PrivateRoutes />}>
               <Route path='/blog' element={<Blog />} />
-              <Route path='/plantas/ia/gerar' element={<IaForm />} />
               <Route path='/blog/create' element={<CreatePost />} />
               <Route path='/blog/edit/:id' element={<EditPost />} />
+              <Route path='/plantas/ia/gerar' element={<IaForm />} />
+              <Route path='/plantas/ia/generatedPlant' element={<GeneratedPlant />} />
               <Route path='/contate-nos' element={<Contact />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/profile/edit/:id' element = {<EditProfile />} />
             </Route>
           </Routes>
         </Container>

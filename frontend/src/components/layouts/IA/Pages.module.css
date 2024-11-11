@@ -54,22 +54,22 @@
   width: 80%;
 }
 
-form{ 
+.question form{ 
   display: flex;
   flex-direction: column;
   gap: 3cqh;
 }
 
-form label input{
+.question form label input{
   display: none;
 }
 
-form label span{ 
+.question form label span{ 
   color: #4f4f4f;
   font-weight: 600;
 }
 
-form label span:hover{ 
+.question form label span:hover{ 
   color: #000000;
   cursor: pointer;
 }
@@ -84,12 +84,31 @@ form label span:hover{
   object-fit: contain; 
 }
 
-.dataTreatment{ 
-  display: flex;
-  flex-direction: column;
-}
 
-.dataTreatment div{ 
-  display: flex;
-  flex-direction: column;
+
+@media(max-width: 1000px) { 
+  .container{ 
+    justify-content: center;
+  }
+
+  .ball{ 
+    width: 4cqh;
+    height: 4cqh;
+    font-size: 2.5cqw;
+  }
+
+  .step p{ 
+    font-size: 1.2cqh;
+  }
+
+  .step {
+    width: 4cqh;
+  }
+  .survey{ 
+    width: 100%;
+  }
+
+  .img{ 
+    display: none;
+  }
 }

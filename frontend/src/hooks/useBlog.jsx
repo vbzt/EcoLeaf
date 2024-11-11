@@ -8,7 +8,7 @@ const useBlog = () => {
 
   const fetchData = async (search = '') => {
     try {
-      const { data } = await api.get(`/blog?search=${search}`)
+      const { data } = await api.get(`/blog`)
       return data.postsData
     } catch (error) {
       console.error("Erro ao buscar posts:", error)

@@ -16,13 +16,13 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
     moment.locale('pt-br')
 
     const fetchPostData = async () => {
-      const { user } = await getUserById(id)
+      const user = await getUserById(id)
       setUsername(user.username)
       setTimestamp(moment(updatedAt).fromNow())
     }
   
     fetchPostData()
-  }, [id, getUserById, updatedAt])
+  }, [])
 
 
   const removePost = async ( id ) => { 

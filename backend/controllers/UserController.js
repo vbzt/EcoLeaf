@@ -40,7 +40,6 @@ const formValidation = require('../helpers/form-validation')
 
   static async login(req, res) {
     const { email, password } = req.body
-
     if (!email) {
       res.status(422).json({message:'O email é obrigatório'})
       return
@@ -65,6 +64,57 @@ const formValidation = require('../helpers/form-validation')
     req.session.userId = user._id
     req.session.save()
     res.status(200).json({ message: 'Login efetuado com sucesso', id: req.session.userId, session: req.session})
+  }
+
+  static async edit (req, res) { 
+    const { email, username } = req.body
+    const { id } = req.params 
+    let newUser = {}
+
+    if(!ObjectId.isValid(id)){ 
+      res.status(422).json({message: 'ID Invalido'})
+      return
+    }
+    
+    const user = await User.findById(req.session.userId)
+
+    if(user._id.toString() !== id.toString()){ 
+      res.status(404).json({message:'Ocorreu um erro, tente novamente mais tarde!'})
+      return
+    }
+
+    if (!email) {
+      res.status(422).json({message:'O email é obrigatório'})
+      return
+    }
+
+    if (!username) {
+      res.status(422).json({message:'O nome de usúario é obrigatório'})
+      return
+    }
+    
+
+    const userExists = await User.findOne({ username })
+    if (userExists && user.username !== username) {
+      res.status(422).json({message: 'Por favor, utilize outro nome de usuario'})
+      return
+    }
+
+    const emailExists = await User.findOne({ email })
+    if (emailExists && user.email !== email) {
+      res.status(422).json({message: 'Por favor, utilize outro email'})
+      return
+    }
+
+    newUser = {...user.toObject()}
+    newUser.email = email
+    newUser.username = username
+
+    const updatedUser = await User.findByIdAndUpdate(id, newUser)
+    
+    res.status(200).json({message: 'Usuario atualizado com sucesso', updatedUser})
+    
+
   }
 
   static async checkUser(req, res) {

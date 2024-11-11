@@ -1,9 +1,8 @@
 import styles from './Galery.module.css'
 
-
-import img1 from '../../../assets/images/info/shutterstock_2181180621-16x9-960x540 1.png'
-import img2 from '../../../assets/images/info/instacao-de-energia-solar-em-casa-1-1024x508 1.png'
-import img3 from '../../../assets/images/info/imagem-post-46 1.png'
+import img1 from '../../../assets/images/info/jardinagem1.png'
+import img2 from '../../../assets/images/info/jardinagem2.png'
+import img3 from '../../../assets/images/info/jardinagem3.png'
 import img4 from '../../../assets/images/info/como-cuidar-das-plantas-quando-for-viajar 1.png'
 import img5 from '../../../assets/images/info/sistemaDeAgua.png'
 import img6 from '../../../assets/images/info/sistemaDeAgua2.png'
@@ -14,20 +13,20 @@ const galeriaItems = [
   {
     src: img1,
     alt: 'alecrim-img',
-    title: 'Painéis Solares',
-    subtitle: 'Transformamos residências em modelos de eficiência energética, proporcionando energia limpa e sustentável. Descubra como você também pode fazer a diferença!',
+    title: 'Transformação Ambiental',
+    subtitle: 'Criamos espaços sustentáveis, ajudando a transformar ambientes em locais que respeitam e preservam o ecossistema.',
   },
   {
     src: img2,
     alt: 'camomila-img',
-    title: 'Painéis Solares',
-    subtitle: 'Levamos inovação e tecnologia para empresas, reduzindo custos e impactando positivamente o meio ambiente. Junte-se à revolução solar!',
+    title: 'Jardinagem',
+    subtitle: 'Oferecemos serviços de jardinagem com foco na preservação e valorização da natureza, para ambientes mais verdes e saudáveis.',
   },
   {
     src: img3,
     alt: 'curucuma-img',
-    title: 'Manutenção de Painéis',
-    subtitle: 'Nossa equipe especializada garante o funcionamento otimizado de seu sistema de energia solar, prolongando a vida útil e maximizando a eficiência!',
+    title: 'Jardinagem',
+    subtitle: 'Nossa equipe especializada cuida de áreas verdes com práticas ecológicas, promovendo o crescimento sustentável e saudável.',
   },
   {
     src: img4,
@@ -64,16 +63,16 @@ const galeriaItems = [
 const Galery = () => {
   return (
     <section className={`container-fluid mt-5 mb-3 ${styles.sectionInfo}`}>
-      <p className= {`text-large text-center ${styles.titleHead}`}>Nossa Galeria</p>
+      <p className={`text-large text-center ${styles.titleHead}`}>Nossa Galeria</p>
       <div className="d-flex justify-content-center">
         <span className={styles.linha}></span>
       </div>
 
       <div className="row">
         {galeriaItems.map((item, index) => (
-          <div key={index} style={{padding: 0, cursor: 'pointer'}} className="col-md-3 position-relative">
+          <div key={index} style={{ padding: 0, cursor: 'pointer' }} className="col-md-3 position-relative">
             <div className={styles.imageContainer}>
-              <img src={item.src} className= {`img-fluid ${styles.image}`} alt={item.alt} />
+              <img src={item.src} className={`img-fluid ${styles.image}`} alt={item.alt} />
               <div className={`${styles.overlayGalery} d-flex justify-content-center align-items-center flex-column`}>
                 <p className={styles.title}>{item.title}</p>
                 <p className={styles.subtitle}>{item.subtitle}</p>

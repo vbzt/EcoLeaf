@@ -4,9 +4,9 @@ import QuestionPage from '../../../../components/layouts/IA/QuestionPage'
 const Page5 = ({ nextStage, onResponse }) => {
   const question = "Quanta luz solar a planta poderá receber?";
   const options = [
-    { value: "high", label: "Ela estará o tempo todo no sol" },
-    { value: "moderate", label: "Ela receberá de tempos em tempos" },
-    { value: "low", label: "Luz solar? O que é isso?" },
+    { value: "quente", label: "Ela estará o tempo todo no sol" },
+    { value: "ameno", label: "Ela receberá de tempos em tempos" },
+    { value: "frio", label: "Luz solar? O que é isso?" },
   ];
   const progress = [
     { label: "Local", complete: true },

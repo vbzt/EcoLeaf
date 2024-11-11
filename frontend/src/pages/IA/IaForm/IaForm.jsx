@@ -4,7 +4,7 @@ import Page3 from './components/Page3'
 import Page4 from './components/Page4'
 import Page5 from './components/Page5'
 import Page6 from './components/Page6'
-import GeneratedPlant from './components/GeneratedPlant'  // Importação da nova página
+import { useNavigate } from 'react-router-dom'
 
 import { useEffect, useState } from 'react'
 import styles from './IaForm.module.css'
@@ -21,6 +21,7 @@ const stages = [
 
 const IaForm = () => {
   const [stage, setStage] = useState(1)
+  const navigate = useNavigate()
   const [responses, setResponses] = useState({
     local: '',
     experience: '',
@@ -30,7 +31,7 @@ const IaForm = () => {
     humidity: '',
   })
 
-  useEffect(() => { 
+  useEffect(() => {
     console.log(responses)
   }, [responses])
 
@@ -42,6 +43,12 @@ const IaForm = () => {
     setResponses((prev) => ({ ...prev, [key]: value }))
   }
 
+  useEffect(() => {
+    if (stage === 7) {
+      navigate('/plantas/ia/generatedPlant', { state: { plantsData: responses } })
+    }
+  }, [stage, navigate, responses]) 
+
   return (
     <section className={styles.container}>
       {stage === 1 && <Page1 nextStage={nextStage} onResponse={(value) => handleResponse('local', value)} />}
@@ -50,7 +57,6 @@ const IaForm = () => {
       {stage === 4 && <Page4 nextStage={nextStage} onResponse={(value) => handleResponse('watering', value)} />}
       {stage === 5 && <Page5 nextStage={nextStage} onResponse={(value) => handleResponse('climate', value)} />}
       {stage === 6 && <Page6 nextStage={nextStage} onResponse={(value) => handleResponse('humidity', value)} />}
-      {stage === 7 && <GeneratedPlant plantData={responses} />} 
     </section>
   )
 }

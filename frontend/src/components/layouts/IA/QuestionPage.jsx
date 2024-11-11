@@ -16,7 +16,7 @@ const QuestionPage = ({ question, options, nextStage, onResponse, progress, imgS
     <div className={styles.survey}>
       <div className={styles.progress}>
         {progress.map((step, index) => (
-          <div key={index} className={`${styles[step.name]} ${styles.step}`}>
+          <div key={index} className={` ${styles.step}`}>
             <div className={`${styles.ball} ${step.complete ? styles.complete : ''}`}>
               <i className="fa-solid fa-check"></i>
             </div>

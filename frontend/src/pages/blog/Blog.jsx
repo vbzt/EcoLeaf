@@ -10,7 +10,6 @@ const Blog = () => {
   const { fetchData } = useBlog()
 
   const [search, setSearch] = useState('')
-  const [order, setOrder] = useState('new') 
   const [posts, setPosts] = useState([])
 
   const loadPosts = async () => {
@@ -20,7 +19,7 @@ const Blog = () => {
 
   useEffect(() => {
     loadPosts()
-  }, [search, order]) 
+  }, []) 
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value) 
@@ -31,24 +30,13 @@ const Blog = () => {
     loadPosts() 
   }
 
-  const handleOrderChange = (newOrder) => {
-    setOrder(newOrder)
-  }
 
   return (
     <section className='blog'>
       <header className="blogHeader">
         <form className='searchForm' onSubmit={handleSearchSubmit}>
-          <Input
-            type='text'
-            name='search'
-            label=''
-            handleOnChange={handleSearchChange}
-            placeholder='Procurando algum post?'
-          />
-          <button type="submit" className='btn blogBtn'>
-            <img src={SearchIcon} alt="Buscar" className='iconLupa' />
-          </button>
+          <Input type='text' name='search' label='' handleOnChange={handleSearchChange} placeholder='Procurando algum post?' />
+
         </form>
       </header>
 
@@ -62,14 +50,7 @@ const Blog = () => {
 
       <div className="posts">
         {posts.length > 0 && posts.map((post) => (
-          <Post
-            key={post._id}
-            id={post.user._id}
-            title={post.title}
-            description={post.description}
-            image={`${import.meta.env.VITE_API}/images/posts/${post.image}`}
-            updatedAt={post.updatedAt}
-          />
+          <Post key={post._id} id={post.user._id} title={post.title} description={post.description} image={`${import.meta.env.VITE_API}/images/posts/${post.image}`} updatedAt={post.updatedAt}/>
         ))}
       </div>
     </section>
