@@ -110,6 +110,7 @@ class PlantController  {
         CASO O USUARIO TER PET, NAO RECOMENDE UMA PLANTA VENENOSA
         Caso a experiencia do usuario com plantas for baixa, recomende algo mais facil de cuidar
         Retorne SOMENTE o RAW json, sem nenhuma escrita adicional
+        Use o wikipedia e outras bases de dados para achar a planta, tenha certeza que ela esteja correta tanto em nome, nome cientifico, descricao e link
         - "popular": "Nome da planta"
         - "cientifico": "Nome científico da planta"
         - "descricao": "descrição da planta gerada"
