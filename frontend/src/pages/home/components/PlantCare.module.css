@@ -1,7 +1,8 @@
 .container {
-  margin: 0 40px;
+  margin: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 20px;
 }
 
@@ -129,10 +130,6 @@
 
 .tab input:checked ~ .content p {
   color: #fff;
-}
-
-.container {
-  margin: 0 auto;
 }
 
 .span-dic {

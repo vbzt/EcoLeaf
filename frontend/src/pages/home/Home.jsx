@@ -5,6 +5,7 @@ import Galery from './components/Galery'
 import Testimonials from './components/Testimonials'
 import PlantCare from './components/PlantCare'
 import Faqs from './components/Faqs'
+import Bcorp from './components/Bcorp'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Galery></Galery>
       <Testimonials></Testimonials>
       <PlantCare></PlantCare>
+      <Bcorp></Bcorp>
       <Faqs></Faqs>
     </>
   )
