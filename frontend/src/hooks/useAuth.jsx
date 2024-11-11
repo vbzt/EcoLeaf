@@ -91,7 +91,7 @@ const useAuth = () => {
   const getUserById = async (id) => {
     try {
       const {data} = await api.get(`/users/${id}`, { withCredentials: true })
-      return data
+      return data.user
     } catch (error) {
       console.log(error.response.data.message)
     }

@@ -61,12 +61,17 @@ const useBlog = () => {
   }
   
   const getPostById = async (id) => { 
+    let msgText
+    let msgType
     try {
       const {data} = await api.get(`/blog/${id}`, { withCredentials: true })
       return data
     } catch (error) {
-      navigate('/blog/create')
+      msgText = error.response.data.message 
+      msgType = 'error'
     }
+    
+    setFlashMessage(msgText, msgType)
   }
 
   return { fetchData, create, edit, getPostById, remove }

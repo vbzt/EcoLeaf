@@ -71,8 +71,7 @@ class PostController {
 
     const { title, description } = req.body
     const image = req.file ? req.file.filename : ''
-    
-   if(user._id.toString() !== post.user._id.toString()){
+   if(user._id.toString() !== post?.user._id.toString()){
     res.status(401).json({message: 'Ocorreu um erro! Tente novamente mais tarde'})
     return
    }

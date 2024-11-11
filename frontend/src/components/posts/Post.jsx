@@ -22,7 +22,7 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
     }
   
     fetchPostData()
-  }, [])
+  }, [id])
 
 
   const removePost = async ( id ) => { 
