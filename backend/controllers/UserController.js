@@ -83,16 +83,27 @@ const formValidation = require('../helpers/form-validation')
       return
     }
 
-    if (!email) {
+    if (!email || email.trim() === '') {
       res.status(422).json({message:'O email é obrigatório'})
       return
     }
 
-    if (!username) {
-      res.status(422).json({message:'O nome de usúario é obrigatório'})
-      return
+    if (!username || username.trim() === '') {
+      res.status(422).json({ message: "O nome de usuário é obrigatório!" })
+      return false
     }
     
+    const userRegex = /^[a-zA-Z0-9_]+$/
+    
+    if (!userRegex.test(username)) {
+      res.status(422).json({ message: "O nome de usuário deve conter apenas letras e números!" })
+      return false
+    }
+    
+    if (username.length < 3 || username.length > 20) {
+      res.status(422).json({ message: "O nome de usuário deve conter de 3 a 20 caracteres!" })
+      return false
+    }
 
     const userExists = await User.findOne({ username })
     if (userExists && user.username !== username) {

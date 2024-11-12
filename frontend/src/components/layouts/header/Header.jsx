@@ -44,15 +44,12 @@ const Header = () => {
 
     return (
         <header ref={headerRef} className={`d-flex flex-wrap justify-content-between p-3 ${styles.header}`}>
+            <div className= {styles.desktopNav}>
             <img className={`px-4 ${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
-            <nav className="d-flex">
+                <nav className="d-flex">
                 <ul className={`nav nav-pills d-flex align-items-center justify-content-center ms-5`}>
                     
-                    <li className="nav-item">
-                        <NavLink to="/" className={({ isActive }) => `nav-link ${styles.navLink} me-2 ${isActive ? styles.navLinkActive : "text-light"}` }>
-                            Home
-                        </NavLink>
-                    </li>  
+                    <li className="nav-item"> <NavLink to="/" className={({ isActive }) => `nav-link ${styles.navLink} me-2 ${isActive ? styles.navLinkActive : "text-light"}` }>Home</NavLink>\\</li>  
 
                     {
                         authenticated  ?
@@ -91,19 +88,16 @@ const Header = () => {
 
                     
                 </ul>
-            </nav>
+                </nav>
+            </div>
             <div className={styles.menu}>
+                <img className={`px-4 ${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
                 <img src={MenuBurger} width="35px" height="35px" className={styles.menuBurger} alt="Menu" />
                 <img src={CloseMenu} alt="Fechar Menu" width="27px" height="27px" className={styles.closeMenu} />
+
+                 
             </div>
-            <form action="/buscar-planta" method="GET" className={`d-flex pe-4 ${styles.buscarPlantaForm}`}>
-                <div className="input-group">
-                    <input autoComplete="off" type="text" id="planta" name="nomePopular" className={`form-control me-1 ${styles.formControl}`} placeholder="Buscar Planta..." />
-                    <button type="submit" className={`btn btn-success ${styles.customBtn}`}>
-                        <img src={SearchIcon} alt="Buscar" className={styles.iconLupa} />
-                    </button>
-                </div>
-            </form>
+            
         </header>
     )
 }
