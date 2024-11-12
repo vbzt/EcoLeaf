@@ -36,9 +36,11 @@ app.use(express.json())
 const UserRoutes = require("./routes/UserRoutes")
 const PlantRoutes = require("./routes/PlantRoutes")
 const PostRoutes = require("./routes/PostRoutes")
+const EmailRoutes = require("./routes/EmailRoutes")
 app.use('/plantas', PlantRoutes)
 app.use('/users', UserRoutes)
 app.use('/blog', PostRoutes)
+app.use('/contate-nos', EmailRoutes)
 
 app.listen(3000, () => {
   console.log('>> server on')
