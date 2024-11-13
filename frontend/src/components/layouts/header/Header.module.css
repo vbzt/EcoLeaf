@@ -12,14 +12,11 @@
 }
 
 
-.header .menu {
+.header .mobileNav {
   display: none;
   padding-top: 2px;
 }
 
-.header .closeMenu {
-  display: none;
-}
 
 .header .imgLogoWhiteText {
   width: 180px;
@@ -102,18 +99,71 @@
 
 .desktopNav{ 
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
+.desktopNav button, .mobileNav button{ 
+  border-radius: 100px;
+    background: #fff;
+    padding: 16px 32px;
+    color: #1A6F3D;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.desktopNav button a, .mobileNav button a{ 
+  color: #1A6F3D;
+  font-weight: 600;
+}
+
+.closeMenu{
+  display: none;
+}
+
 @media(max-width: 1024px){ 
+  .desktopNav{ 
+    display: none;
+  }
 
+  .header .menu{ 
+    top: 0;
+    left: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
-  .header .menu{
+  .header .mobileNav{
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 15cqh;
+    display: flex;
+    height: 100%;
+  }
+
+  .header .mobileNav .navActive{ 
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     display: flex;
   }
 
-  .header nav ul, .header form{
-    display: none !important;
+  .header .mobileNav nav ul{ 
+    
+    font-size: 3.5cqw;
   }
 
+  .header .mobileNav .navDeactivated{ 
+    display: none;
+  }
+
+ 
 }
