@@ -4,7 +4,7 @@ import bCorpImage from '../../../assets/images/certificado-bcorp.png';
 
 const Bcorp = () => {
   return (
-    <section className= {`container d-flex justify-content-between align-items-start ${styles.aboutUs}` }>
+    <section className= {`container d-flex justify-content-between align-items-center ${styles.aboutUs}` }>
       <div className="d-flex flex-column mt-5">
         <div className= {styles.about}> 
         <h1 className={`pb-2 ${styles.title}`}>Sobre a <span className="colored">EcoLeaf</span></h1>

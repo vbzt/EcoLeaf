@@ -5,13 +5,13 @@ import Plant from '../../components/plants/Plant'
 import usePlant from '../../hooks/usePlant'
 
 const PlantCatalog = () => {
-  const { fetchData } = usePlant()
+  const { fetchPlants } = usePlant()
 
   const [search, setSearch] = useState('')
   const [plants, setPlants] = useState([])
 
   const loadPlants = async () => {
-    const data = await fetchData(search)
+    const data = await fetchPlants(search)
     setPlants(data)
   }
 

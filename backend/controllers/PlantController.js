@@ -15,21 +15,27 @@ let runChat
 
 class PlantController  {
 
-  static async showAll(req,res){ 
+  static async showAll(req, res) {
     try {
-      const search = req.query.search || ''
-      let plantsData
+      const search = req.query.search || '';
+      let plantsData;
+  
       if (search) {
-        plantsData = await Plant.find({ title: { $regex: search, $options: 'i' } }).sort('-createdAt')
-        console.log(plantsData)
-        return
-      }else{ 
-        plantsData = await Plant.find().sort('-createdAt')
+        plantsData = await Plant.find({
+          $or: [
+            { name: { $regex: search, $options: 'i' } },
+            { scientificName: { $regex: search, $options: 'i' } },
+            { description: { $regex: search, $options: 'i' } } 
+          ]
+        }).sort('-createdAt'); 
+      } else {
+  
+        plantsData = await Plant.find().sort('-createdAt');
       }
-      
-      res.status(200).json({ plantsData })
+  
+      res.status(200).json({ plantsData });
     } catch (e) {
-      res.status(500).json({ message: 'Erro ao buscar plantas', error: e })
+      res.status(500).json({ message: 'Erro ao buscar plantas', error: e });
     }
   }
   

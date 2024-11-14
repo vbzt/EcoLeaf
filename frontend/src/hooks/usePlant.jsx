@@ -6,7 +6,7 @@ const usePlant = () => {
   const navigate = useNavigate()
   const { setFlashMessage } = useFlashMessage()
 
-  const fetchData = async (search = '') => {
+  const fetchPlants = async (search = '') => {
     try {
       const { data } = await api.get(`/plantas`, {params: { search }, withCredentials: true})
       return data.plantsData
@@ -32,7 +32,20 @@ const usePlant = () => {
     setFlashMessage(msgText, msgType)
   }
 
-  return { fetchData, generatePlant }
+  const remove = async (id) => { 
+    let msgText = 'Planta removida com sucesso!'
+    let msgType = 'success'
+
+    try{ 
+      const { data } = await api.delete(`/plantas/${id}`, { withCredentials: true })
+    }catch(e){ 
+      msgText = e.response.data.message 
+      msgType = 'error'
+    }
+    setFlashMessage(msgText, msgType)
+  }
+
+  return { fetchPlants, generatePlant, remove }
 }
 
 export default usePlant

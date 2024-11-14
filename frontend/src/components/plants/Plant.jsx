@@ -46,7 +46,6 @@ const Plant = ({ name, scientific, description, image, id, updatedAt, user, plan
 
         {user && ( 
           <div className={styles.options}>
-            <NavLink className='colored' to={`/plants/edit/${plantId}`}>Editar</NavLink>
             <p className='error' onClick={() => { removePlant(plantId) }} >Deletar</p>
           </div>
         )}
