@@ -31,10 +31,6 @@ const IaForm = () => {
     humidity: '',
   })
 
-  useEffect(() => {
-    console.log(responses)
-  }, [responses])
-
   const nextStage = () => {
     setStage((currentStage) => (currentStage % stages.length) + 1)
   }

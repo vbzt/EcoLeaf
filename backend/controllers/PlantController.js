@@ -32,36 +32,6 @@ class PlantController  {
       res.status(500).json({ message: 'Erro ao buscar plantas', error: e })
     }
   }
-
-  
-    static async update(req, res) {
-      const { id } = req.params
-      const image = req.file  
-      let updatedPlant = {}
-
-      if(!ObjectId.isValid(id)){ 
-        res.status(422).json({message: 'ID Invalido'})
-        return
-      }
-
-      const plant = await Plant.findById(id)
-      const userId = req.session.userId
-
-      if(!plant){
-        res.status(404).json({message: 'Planta não encontrada'})
-      }
-      if(plant.user._id.toString() !== userId.toString() || !userId){
-        res.status(422).json({message: 'Ocorreu um erro, tente novamente mais tarde'})
-        return 
-      }
-      if(!plantValidation(req, res)) return 
-
-      updatedPlant = { ...req.body }
-      updatedPlant.image = image.filename
-
-      await Plant.findByIdAndUpdate(id, updatedPlant)
-      res.status(200).json({message: 'Planta atualizada com sucesso!', updatedPlant})
-    }
   
     static async delete(req, res) {
       const { id } = req.params
@@ -143,7 +113,6 @@ class PlantController  {
           await newPlant.save()
     
         }
-        console.log(parsedResponse)
         res.status(201).json({ message: 'Planta gerada e cadastrada com sucesso!', parsedResponse })
       } catch (error) {
         console.error(error)
