@@ -14,7 +14,7 @@ const Ia = () => (
           A equipe EcoLeaf oferece uma Inteligência Artificial integrada que, com base nas condições climáticas e na sua localização, recomenda a planta ideal para você cuidar. Além disso, ela fornece uma breve descrição sobre a planta, ajudando você a conhecê-la melhor e a entender os cuidados necessários para mantê-la saudável.
           </p>
         </div>
-        <NavLink to="/plantas/ia/gerar" className={styles.startNow}>
+        <NavLink to="/ia/gerar" className={styles.startNow}>
           <button>QUERO COMEÇAR!</button>
         </NavLink>
       </div>

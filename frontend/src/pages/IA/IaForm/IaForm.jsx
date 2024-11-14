@@ -45,7 +45,7 @@ const IaForm = () => {
 
   useEffect(() => {
     if (stage === 7) {
-      navigate('/plantas/ia/generatedPlant', { state: { plantsData: responses } })
+      navigate('/ia/generatedPlant', { state: { plantsData: responses } })
     }
   }, [stage, navigate, responses]) 
 
