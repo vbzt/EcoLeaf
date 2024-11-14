@@ -3,6 +3,7 @@ const { sendMail } = require('../helpers/send-email')
 class EmailController {
   static async sendEmail(req, res) {
     const { email } = req.body
+    console.log(req.body)
 
     if (!email || email.trim() === "") {
       return res.status(422).json({ message: "O email é obrigatório!" })
