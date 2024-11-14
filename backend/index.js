@@ -33,6 +33,7 @@ app.use(session({
 app.use(express.static('public'))
 app.use(express.json())
 
+
 const UserRoutes = require("./routes/UserRoutes")
 const PlantRoutes = require("./routes/PlantRoutes")
 const PostRoutes = require("./routes/PostRoutes")
