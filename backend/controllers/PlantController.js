@@ -16,27 +16,23 @@ let runChat
 class PlantController  {
 
   static async showAll(req,res){ 
-    const plants = await Plant.find().sort('-createdAt')
-    res.status(200).json({plants})
+    try {
+      const search = req.query.search || ''
+      let plantsData
+      if (search) {
+        plantsData = await Plant.find({ title: { $regex: search, $options: 'i' } }).sort('-createdAt')
+        console.log(plantsData)
+        return
+      }else{ 
+        plantsData = await Plant.find().sort('-createdAt')
+      }
+      
+      res.status(200).json({ plantsData })
+    } catch (e) {
+      res.status(500).json({ message: 'Erro ao buscar plantas', error: e })
+    }
   }
 
-   static async create(req, res) {
-
-      if(!checkUser) return
-      const { name, cientific } = req.body
-      const image = req.file.filename
-  
-      if(!plantValidation(req,res)) return 
-      const id = req.session.userId
-      const user = await getUserById(id, res)
-      try {
-        const planta = new Plant({name, cientific, image, user: {_id: user._id, email: user.email}})
-        const newPlant = await planta.save()
-        res.status(201).json({ message: 'Planta cadastrada com sucesso!', newPlant})
-      } catch (error) {
-        res.status(500).json({ message: 'Erro ao cadastrar a planta', error })
-      }
-    }
   
     static async update(req, res) {
       const { id } = req.params
@@ -125,12 +121,30 @@ class PlantController  {
         A planta deve se adequar a um clima ${climate},
         A planta deve se adequar a um ambiente ${humidity}
       `)
-    
+      const id = req.session.userId
+      const user = await getUserById(id)
+
       try { 
       const cleanedResponse = response.replace(/```(?:json)?|```/g, '').trim();
       const parsedResponse = JSON.parse(cleanedResponse);
         parsedResponse.link = await getPlantImage(parsedResponse.cientifico)
-        res.status(200).json({ message: "Planta gerada com sucesso!", parsedResponse })
+       
+
+        const plantExists = await Plant.findOne({ cientific: parsedResponse.cientifico })
+        if(!plantExists){ 
+          const newPlant = new Plant({
+            name: parsedResponse.popular,
+            cientific: parsedResponse.cientifico,
+            description: parsedResponse.descricao,
+            image: parsedResponse.link,
+            user: { _id: user._id, email: user.email }
+          })
+
+          await newPlant.save()
+    
+        }
+        console.log(parsedResponse)
+        res.status(201).json({ message: 'Planta gerada e cadastrada com sucesso!', parsedResponse })
       } catch (error) {
         console.error(error)
         res.status(500).json({ message: 'Erro ao gerar a planta', error })

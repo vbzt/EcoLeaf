@@ -1,0 +1,76 @@
+.plantCatalog {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2cqh;
+}
+
+.plantCatalogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1cqh;
+}
+
+.plantCatalogHeader h1 {
+  font-size: 3cqh;
+  font-weight: bold;
+}
+
+.plantCatalogHeader p {
+  font-size: 2cqh;
+  color: #797D79;
+  text-align: center;
+  max-width: 80%;
+}
+
+.plantCatalogHeader form {
+  width: 100%;
+  display: flex;
+  gap: 2cqh;
+}
+
+.plantCatalogHeader form label { 
+  display: none;
+}
+
+.plantCatalogHeader form input { 
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  max-height: 50px;
+  padding: 2cqh;
+  border-radius: 3px;
+  background-color: #efefef;
+  color: #797d79;
+  font-weight: 600;
+}
+
+.plantCatalogHeader form input:focus { 
+  background-color: #efefef;
+  border: 1px solid #dee2e6;
+}
+
+.plantSearch p { 
+  font-weight: 600;
+}
+
+.plants { 
+  display: flex;
+  flex-direction: column;
+  gap: 5cqh;
+}
+
+@media(max-width: 1000px) { 
+  .plantCatalog {
+    width: 100%;
+  }
+
+  .plantCatalogHeader {
+    flex-direction: column;
+    justify-content: start;
+  }
+}

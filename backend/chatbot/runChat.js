@@ -1,11 +1,10 @@
-// chatbot/chatbotService.js
 import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold
 } from "@google/generative-ai"
 
-const API_KEY = 'AIzaSyC1eCSE_piKt-iOIigbWQkAF196zn4Ss0A'
+const API_KEY = 'AIzaSyBs4rF6W3xLJOuPZxrYigOzVphrXdmyoCA  '
 
 const MODEL_NAME = 'gemini-1.0-pro'
 
@@ -39,3 +38,4 @@ export const runChat = async (userInput) => {
   const response = result.response.text()
   return response
 }
+
