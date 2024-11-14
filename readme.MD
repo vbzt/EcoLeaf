@@ -84,7 +84,7 @@ API_KEY="YOUR_GEMINI_API_KEY"
 <br>If you don't have an api key, get one [here](https://ai.google.dev/aistudio?hl=pt-br)
 
 
-Then create and <code>.env-local</code> archive in the frontend root folder and add these variables:
+Then create and <code>.env.local</code> archive in the frontend root folder and add these variables:
 ```JSON
 VITE_API="http://localhost:3000"
 ```
@@ -102,8 +102,6 @@ npm run dev
 ### API functions
 
 ### Auth EndPoints
-
-# Endpoints
 
 ### Register User
 - **Route**: `/users/register`
@@ -258,3 +256,204 @@ npm run dev
 
 
 
+### Blog EndPoints
+## Get All Blog Posts
+- **Route**: `/blog`
+- **Method**: `GET`
+- **Description**: Retrieves all blog posts.
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "postsData": [
+        {
+          "_id": "673600ba98adaf815aa7cd0b",
+          "title": "blog test",
+          "description": "blog test description",
+          "image": "17315923786703603.jpg",
+          "user": {
+            "_id": "6735f349fd6189147a3bc5a3",
+            "email": "test@test"
+          },
+          "createdAt": "2024-11-14T13:52:58.686Z",
+          "updatedAt": "2024-11-14T13:52:58.686Z",
+          "__v": 0
+        }
+      ]
+    }
+    ```
+
+## Create a Blog Post
+- **Route**: `/blog/create`
+- **Method**: `POST`
+- **Description**: Creates a new blog post.
+- **File**: `Optional image file (PNG/JPG)`
+
+### Request
+- **Body**:
+    ```json
+    {
+      "title": "blog test",
+      "description": "blog test description",
+      "image": "17315923786703603.jpg"
+    }
+    ```
+  
+### Response
+- **Status**: `201 Created`
+- **Body**:
+    ```json
+    {
+      "message": "Post criado com sucesso!",
+      "newPost": {
+        "title": "blog test",
+        "description": "blog test description",
+        "image": "17315923786703603.jpg",
+        "user": {
+          "_id": "6735f349fd6189147a3bc5a3",
+          "email": "test@test"
+        },
+        "_id": "673600ba98adaf815aa7cd0b",
+        "createdAt": "2024-11-14T13:52:58.686Z",
+        "updatedAt": "2024-11-14T13:52:58.686Z",
+        "__v": 0
+      }
+    }
+    ```
+    ---
+## Update a Blog Post by ID
+- **Route**: `/blog/:id`
+- **Method**: `PATCH`
+- **Description**: Updates the specified fields of a blog post by its ID.
+- **File**: `Optional updated image file (PNG/JPG)`
+
+### Request
+- **Body**:
+    ```json
+    {
+      "title": "blog edit",
+      "description": "blog description edit",
+      "image": "17315926416295458.jpeg"
+    }
+    ```
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "message": "Post atualizado com sucesso",
+      "newPost": {
+        "title": "blog edit",
+        "description": "blog description edit",
+        "image": "17315926416295458.jpeg"
+      }
+    }
+    ```
+
+---
+
+## Delete a Blog Post by ID
+- **Route**: `/blog/:id`
+- **Method**: `DELETE`
+- **Description**: Deletes a blog post by its ID.
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "message": "Post excluído com sucesso!",
+      "post": {
+        "_id": "673600ba98adaf815aa7cd0b",
+        "title": "blog edit",
+        "description": "blog description edit",
+        "image": "17315926416295458.jpeg",
+        "user": {
+          "_id": "6735f349fd6189147a3bc5a3",
+          "email": "test@test"
+        },
+        "createdAt": "2024-11-14T13:52:58.686Z",
+        "updatedAt": "2024-11-14T13:57:21.643Z",
+        "__v": 0
+      }
+    }
+    ```
+
+---
+
+
+### Contact EndPoints
+## Contact Us
+- **Route**: `/contate-nos`
+- **Method**: `POST`
+- **Description**: Sends a contact email.
+
+### Request
+- **Body**:
+    ```json
+    {
+      "email": "johndoe@gmail.com"
+    }
+    ```
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "message": "Email enviado com sucesso!",
+      "email": "johndoe@gmail.com"
+    }
+    ```
+
+### Plant EndPoints
+
+## Generate and Register Plant
+- **Route**: `/plantas/generate-plant`
+- **Method**: `POST`
+- **Description**: Generates and registers a recommended plant based on user-provided conditions.
+
+### Request
+- **Body**:
+    ```json
+    {
+      "local": "casa",
+      "climate": "quente",
+      "humidity": "úmido",
+      "watering": "alto",
+      "experience": "alta",
+      "pets": "tem"
+    }
+    ```
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "message": "Planta gerada e cadastrada com sucesso!",
+      "parsedResponse": {
+        "popular": "Maranta",
+        "cientifico": "Maranta leuconeura",
+        "descricao": "Maranta é um género botânico da família das Marantaceae considerado por alguns autores como um sinónimo do género Ctenanthe, com cerca de 40 espécies herbáceas e rizomatosas de folhagem colorida, com tonalidades verdes, avermelhadas, creme, salpicadas, agrisalhadas e com manchas.",
+        "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Maranta_leuconeura3.jpg/500px-Maranta_leuconeura3.jpg"
+      }
+    }
+    ```
+
+## Remove Plant by ID
+- **Route**: `/plantas/:id`
+- **Method**: `DELETE`
+- **Description**: Removes a specific plant by its ID.
+
+### Response
+- **Status**: `200 OK`
+- **Body**:
+    ```json
+    {
+      "message": "Planta removida com sucesso!"
+    }
+    ```
