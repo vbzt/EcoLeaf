@@ -6,9 +6,16 @@ const { ObjectId } = require('mongodb')
 class PostController {
   static async showPosts(req, res) {
     try {
+      const search = req.query.search || ''
       let postsData
-      postsData = await Post.find().sort('-updatedAt')
-      res.status(200).json({postsData})
+      
+      if (search) {
+        postsData = await Post.find({ title: { $regex: search, $options: 'i' } }).sort('-updatedAt')
+      } else {
+        postsData = await Post.find().sort('-updatedAt')
+      }
+      
+      res.status(200).json({ postsData })
     } catch (e) {
       res.status(500).json({ message: 'Erro ao buscar posts', error: e })
     }
@@ -81,26 +88,33 @@ class PostController {
 
 }
 
-  static async remove(req, res){
-    const id = req.session.userId
-    const postId = req.params.id
+static async remove(req, res) {
+  const id = req.session.userId
+  const postId = req.params.id
 
-    if(!ObjectId.isValid(postId)){ 
-      res.status(422).json({message: 'ID Invalido'})
-      return
-    }
-
-    const user = await getUserById(id)
-    const post = await Post.findById(postId)
-    
-    if(user._id.toString() !== post.user._id.toString()){
-     res.status(401).json({message: 'Ocorreu um erro! Tente novamente mais tarde'})
-     return
-    }
-
-    await Post.findByIdAndDelete(postId)
-    res.status(200).json({message: 'Post excluido com sucesso'})
+  if (!ObjectId.isValid(postId)) {
+    res.status(422).json({ message: 'ID Inválido' })
+    return
   }
+
+  const user = await getUserById(id)
+  const post = await Post.findById(postId)
+
+  if (!post) {
+    res.status(404).json({ message: 'Post não encontrado' })
+    return
+  }
+
+  if (user._id.toString() !== post.user._id.toString()) {
+    res.status(401).json({ message: 'Ocorreu um erro! Tente novamente mais tarde' })
+    return
+  }
+
+  await Post.findByIdAndDelete(postId)
+  console.log(post)
+  res.status(200).json({ message: 'Post excluído com sucesso!', post })
+}
+
 
   static async getPostById(req,res){ 
     const  id = req.params.id

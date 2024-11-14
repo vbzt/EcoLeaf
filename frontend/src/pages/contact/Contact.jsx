@@ -1,8 +1,10 @@
 import Input from '../../components/form/Input'
 import { useState } from 'react'
+import useEmail from '../../hooks/useEmail'
 
 const Contact = () => {
   const [message, setMessage] = useState({})
+  const { sendEmail } = useEmail()
 
   const formatPhoneNumber = (value) => {
     const cleaned = ('' + value).replace(/\D/g, '')
@@ -16,16 +18,17 @@ const Contact = () => {
     setMessage((prevMessage) => ({ ...prevMessage, [name]: formattedValue }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(message)
+    await sendEmail(message)
   }
 
   return (
     <section>
       <div className="d-flex justify-content-center flex-column align-items-center container">
         <div className="container d-flex flex-column mt-5" style={{ maxWidth: '580px' }}>
-          <h1 className="mb-4 text-center">Contate-nos</h1>
+          <h1 className="mb-4 text-center">Contrate-nos</h1>
           <form className="form-bg card d-flex flex-column align-items-center justify-content-center p-3" onSubmit={handleSubmit}>
             <Input type="text" label="Nome Completo ou Nome da Empresa" name="nomeContato" placeholder="Digite seu nome completo ou da empresa" handleOnChange={handleChange} required />
             <Input type="email" label="Email" name="email" placeholder="Digite seu email" handleOnChange={handleChange} required />

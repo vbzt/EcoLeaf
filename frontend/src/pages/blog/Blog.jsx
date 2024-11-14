@@ -19,10 +19,10 @@ const Blog = () => {
 
   useEffect(() => {
     loadPosts()
-  }, []) 
+  }, [search])
 
   const handleSearchChange = (e) => {
-    setSearch(e.target.value) 
+    setSearch(e.target.value)
   }
 
   const handleSearchSubmit = (e) => {
@@ -30,13 +30,11 @@ const Blog = () => {
     loadPosts() 
   }
 
-
   return (
     <section className='blog'>
       <header className="blogHeader">
         <form className='searchForm' onSubmit={handleSearchSubmit}>
           <Input type='text' name='search' label='' handleOnChange={handleSearchChange} placeholder='Procurando algum post?' />
-
         </form>
       </header>
 

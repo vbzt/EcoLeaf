@@ -8,11 +8,11 @@ const useBlog = () => {
 
   const fetchData = async (search = '') => {
     try {
-      const { data } = await api.get(`/blog`)
+      const { data } = await api.get(`/blog`, {params: { search }, withCredentials: true})
       return data.postsData
     } catch (error) {
       console.error("Erro ao buscar posts:", error)
-      return { postsData: [] }
+      return []
     }
   }
 
