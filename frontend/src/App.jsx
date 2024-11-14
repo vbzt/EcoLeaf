@@ -21,6 +21,7 @@ import IaForm from './pages/IA/IaForm/IaForm'
 import GeneratedPlant from './pages/IA/IaForm/components/GeneratedPlant'
 import Profile from './pages/profile/Profile'
 import EditProfile from './pages/profile/edit/EditProfile'
+import PlantCatalog from './pages/plants/PlantCatalog'
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Routes>
             
             <Route path='/' element={<Home />} />
-            <Route path='/plantas/ia' element={<Ia />} />
+            <Route path='/ia' element={<Ia />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
 
@@ -41,8 +42,9 @@ function App() {
               <Route path='/blog' element={<Blog />} />
               <Route path='/blog/create' element={<CreatePost />} />
               <Route path='/blog/edit/:id' element={<EditPost />} />
-              <Route path='/plantas/ia/gerar' element={<IaForm />} />
-              <Route path='/plantas/ia/generatedPlant' element={<GeneratedPlant />} />
+              <Route path = '/plantas' element = {<PlantCatalog/>}/>
+              <Route path='/ia/gerar' element={<IaForm />} />
+              <Route path='/ia/generatedPlant' element={<GeneratedPlant />} />
               <Route path='/contate-nos' element={<Contact />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/profile/edit/:id' element = {<EditProfile />} />

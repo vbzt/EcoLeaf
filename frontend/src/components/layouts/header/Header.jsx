@@ -63,7 +63,7 @@ const Header = () => {
   return (
     <header ref={headerRef} className={`d-flex flex-wrap justify-content-between p-3 ${styles.header}`}>
       <div className={styles.desktopNav}>
-        <img className={`px-4 ${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
+        <img className={`${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
         <nav className="d-flex">
           <ul className="nav nav-pills d-flex align-items-center justify-content-center ms-5">
             <li className="nav-item">
@@ -76,7 +76,10 @@ const Header = () => {
                   <NavLink to="/blog" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Blog</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Contate-nos</NavLink>
+                  <NavLink to="/plantas" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Catálogo de plantas</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Contrate-nos</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/profile" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Perfil</NavLink>
@@ -94,16 +97,16 @@ const Header = () => {
             )}
 
             <li className="nav-item">
-              <NavLink to="/plantas/ia" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Nossa IA</NavLink>
+              <NavLink to="/ia" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Nossa IA</NavLink>
             </li>
           </ul>
         </nav>
-        <NavLink to="/plantas/ia/gerar"><button>Gerar uma planta</button></NavLink>
+        <NavLink to="/ia/gerar"><button>Achar uma planta ideal</button></NavLink>
       </div>
 
       <div className={styles.mobileNav} style={{ height: isMenuOpen ? "100vh" : "auto" }}>
         <div className={styles.menu}>
-          <img className={`px-4 ${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
+          <img className={`${styles.imgLogoWxhiteText}`} src={Logo} alt="Logo" />
           <img src={isMenuOpen ? CloseMenu : MenuBurger} width="35px" height="35px" onClick={toggleMenu} className={isMenuOpen ? styles.close : styles.menuBurger} alt="Menu" />
         </div>
         <nav className={isMenuOpen ? styles.navActivated : styles.navDeactivated}>
@@ -118,7 +121,10 @@ const Header = () => {
                   <NavLink to="/blog" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Blog</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Contate-nos</NavLink>
+                  <NavLink to="/plantas" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Catálogo de plantas</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/contate-nos" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Contrate-nos</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/profile" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Perfil</NavLink>
@@ -136,9 +142,9 @@ const Header = () => {
             )}
 
             <li className="nav-item">
-              <NavLink to="/plantas/ia" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Nossa IA</NavLink>
+              <NavLink to="/ia" className={({ isActive }) => `nav-link ${styles.navLink} ${isActive ? styles.navLinkActive : "text-light"}`}>Nossa IA</NavLink>
             </li>
-          <NavLink to="/plantas/ia/gerar"><button>Gerar uma planta</button></NavLink>
+          <NavLink to="/ia/gerar"><button>Achar uma planta ideal</button></NavLink>
           </ul>
         </nav>
       </div>
