@@ -41,7 +41,7 @@ EcoLeaf: **sustentabilidade e tecnologia** ao seu alcance para transformar seu e
 - **Responsabilidades:** Criador do design e código da **landing page** e das **páginas de formulários**. Contribuiu para a criação do **CRUD do Catálogo de Plantas** em conjunto com outros membros da equipe.
 
 ### Design UI/UX
-**João Vitor** 15905 [Github](https://github.com/ojoaox)
+**João Victor** 15905 [Github](https://github.com/ojoaox)
 
 - **Responsabilidades:** Responsável pelo design UI/UX do projeto, criado no **Figma**. Atuou no suporte ao desenvolvimento front-end, contribuindo com ideias para aprimorar a experiência do usuário e a usabilidade da interface.
 
