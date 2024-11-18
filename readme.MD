@@ -254,8 +254,6 @@ npm run dev
     }
     ```
 
-
-
 ### Blog EndPoints
 ## Get All Blog Posts
 - **Route**: `/blog`
