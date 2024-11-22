@@ -86,7 +86,7 @@ const Profile = () => {
               image={`${import.meta.env.VITE_API}/images/posts/${post.image}`}
               updatedAt={post.updatedAt}
               user={true}
-              onRemove={handleRemovePost} // Passa a função de callback
+              onRemove={handleRemovePost}
             />
           ))}
         </div>
@@ -103,7 +103,7 @@ const Profile = () => {
               image={plant.image}
               updatedAt={plant.updatedAt}
               user={true}
-              onRemove={handleRemovePlant} // Passa a função de callback
+              onRemove={handleRemovePlant} 
             />
           ))}
         </div>

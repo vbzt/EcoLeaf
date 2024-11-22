@@ -25,7 +25,7 @@ const Post = ({ title, description, image, id, updatedAt, user, postId, onRemove
 
   const removePost = async (id) => { 
     await remove(id)
-    onRemove(postId) // Notifica o componente pai sobre a remoção
+    onRemove(postId)
   }
 
   return (
