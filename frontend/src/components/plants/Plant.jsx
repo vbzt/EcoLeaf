@@ -6,7 +6,7 @@ import { Context } from '../../context/userContext'
 import { NavLink } from 'react-router-dom'
 import usePlant from '../../hooks/usePlant'
 
-const Plant = ({ name, scientific, description, image, id, updatedAt, user, plantId }) => {
+const Plant = ({ name, scientific, description, image, id, updatedAt, user, plantId, onRemove }) => {
   const { getUserById } = useContext(Context)
   const [username, setUsername] = useState('')
   const [timestamp, setTimestamp] = useState('')
@@ -20,12 +20,12 @@ const Plant = ({ name, scientific, description, image, id, updatedAt, user, plan
       setUsername(user.username)
       setTimestamp(moment(updatedAt).fromNow())
     }
-
     fetchPlantData()
   }, [id])
 
   const removePlant = async (id) => { 
-    remove(id)
+    await remove(id)
+    onRemove(plantId)
   }
 
   return (
@@ -46,7 +46,7 @@ const Plant = ({ name, scientific, description, image, id, updatedAt, user, plan
 
         {user && ( 
           <div className={styles.options}>
-            <p className='error' onClick={() => { removePlant(plantId) }} >Deletar</p>
+            <p className='error' onClick={() => { removePlant(plantId) }}>Deletar</p>
           </div>
         )}
       </div>

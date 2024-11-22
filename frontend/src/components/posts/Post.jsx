@@ -6,7 +6,7 @@ import { Context } from '../../context/userContext'
 import { NavLink } from 'react-router-dom'
 import useBlog from '../../hooks/useBlog'
 
-const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
+const Post = ({ title, description, image, id, updatedAt, user, postId, onRemove }) => {
   const { getUserById } = useContext(Context)
   const [username, setUsername] = useState('')
   const [timestamp, setTimestamp] = useState('')
@@ -20,13 +20,12 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
       setUsername(user.username)
       setTimestamp(moment(updatedAt).fromNow())
     }
-  
     fetchPostData()
   }, [id])
 
-
-  const removePost = async ( id ) => { 
-    remove(id)
+  const removePost = async (id) => { 
+    await remove(id)
+    onRemove(postId) // Notifica o componente pai sobre a remoção
   }
 
   return (
@@ -45,9 +44,9 @@ const Post = ({ title, description, image, id, updatedAt, user, postId }) => {
         <p className={styles.timestamp}>{timestamp}</p>
 
         {user && ( 
-          <div className= {styles.options}>
-            <NavLink className = 'colored' to={`/blog/edit/${postId} `}>Editar</NavLink>
-            <p className='error' onClick={() => { removePost(postId) }} >Deletar</p>
+          <div className={styles.options}>
+            <NavLink className='colored' to={`/blog/edit/${postId}`}>Editar</NavLink>
+            <p className='error' onClick={() => { removePost(postId) }}>Deletar</p>
           </div>
         )}
       </div>

@@ -9,10 +9,8 @@ const useEmail = () => {
   const sendEmail = async (email) => {
     let msgType = 'success'
     let msgText = 'Email enviado com sucesso!'
-    console.log(email)
     try {
       const { data } = await api.post(`/contate-nos`, email, {withCredentials: true})
-      console.log(data)
       
     } catch (error) {
       msgText = error.response.data.message

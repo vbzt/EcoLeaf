@@ -20,7 +20,6 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(message)
     await sendEmail(message)
   }
 

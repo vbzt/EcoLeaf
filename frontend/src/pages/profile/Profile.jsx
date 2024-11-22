@@ -9,45 +9,50 @@ import Plant from "../../components/plants/Plant"
 
 const Profile = () => {
   const [user, setUser] = useState({})
-  const [posts, setPosts] = useState([])  // Inicializando como array
-  const [plants, setPlants] = useState([])  // Inicializando como array
+  const [posts, setPosts] = useState([])  
+  const [plants, setPlants] = useState([])  
   const [selectedOption, setSelectedOption] = useState("posts")
 
   const { logout, checkUser } = useContext(Context)
   const { fetchData } = useBlog()
   const { fetchPlants } = usePlant()
-  
+
   useEffect(() => {
     const fetchUserData = async () => {
       const { currentUser } = await checkUser()
       setUser(currentUser)
       return currentUser
     }
-  
+
     const fetchUserPost = async (currentUser) => { 
       const posts = await fetchData()
       const userPosts = posts.filter((post) => post.user._id === currentUser._id)
       setPosts(userPosts)
     }
-  
+
     const fetchUserPlants = async (currentUser) => { 
       const plants = await fetchPlants()
       const userPlants = plants.filter((plant) => plant.user._id === currentUser._id)
       setPlants(userPlants)
     }
-  
+
     const loadUserData = async () => {
       const currentUser = await fetchUserData()
       fetchUserPost(currentUser)
       fetchUserPlants(currentUser)
     }
-  
+
     loadUserData()
-    
-    console.log('Dados carregados')
-  
-  }, [])  // useEffect rodando apenas uma vez quando o componente é montado
-  
+  }, [])
+
+  const handleRemovePost = (postId) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId))
+  }
+
+  const handleRemovePlant = (plantId) => {
+    setPlants((prevPlants) => prevPlants.filter((plant) => plant._id !== plantId))
+  }
+
   return (
     <section className='profile'>
       <header className="profileHeader">        
@@ -81,6 +86,7 @@ const Profile = () => {
               image={`${import.meta.env.VITE_API}/images/posts/${post.image}`}
               updatedAt={post.updatedAt}
               user={true}
+              onRemove={handleRemovePost} // Passa a função de callback
             />
           ))}
         </div>
@@ -97,6 +103,7 @@ const Profile = () => {
               image={plant.image}
               updatedAt={plant.updatedAt}
               user={true}
+              onRemove={handleRemovePlant} // Passa a função de callback
             />
           ))}
         </div>
@@ -106,3 +113,4 @@ const Profile = () => {
 }
 
 export default Profile
+

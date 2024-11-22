@@ -111,7 +111,6 @@ static async remove(req, res) {
   }
 
   await Post.findByIdAndDelete(postId)
-  console.log(post)
   res.status(200).json({ message: 'Post excluído com sucesso!', post })
 }
 

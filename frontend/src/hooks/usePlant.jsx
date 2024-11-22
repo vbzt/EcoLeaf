@@ -22,7 +22,6 @@ const usePlant = () => {
 
     try {
       const { data } = await api.post('/plantas/generate-plant', plant, { withCredentials: true})
-      console.log(data)
       return data.parsedResponse
 
     } catch (error) {

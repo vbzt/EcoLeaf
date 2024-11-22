@@ -3,9 +3,11 @@ import {
   HarmCategory,
   HarmBlockThreshold
 } from "@google/generative-ai"
+import dotenv from "dotenv"
 
-const API_KEY = 'AIzaSyBs4rF6W3xLJOuPZxrYigOzVphrXdmyoCA  '
+dotenv.config()
 
+const API_KEY = process.env.API_KEY
 const MODEL_NAME = 'gemini-1.0-pro'
 
 
