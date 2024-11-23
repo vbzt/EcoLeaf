@@ -84,7 +84,7 @@ class EmailController {
             <p>Em nome de toda a equipe da EcoLeaf, queremos expressar nossa profunda gratidão por seu interesse em nossa iniciativa. Estamos muito felizes por você ter decidido conhecer nosso projeto!</p>
             <p>Nossa missão é oferecer recomendações personalizadas de plantas que se adaptam às condições do seu ambiente, para que você possa cuidar delas da melhor maneira possível. Queremos que seu espaço verde prospere!</p>
             <div class="button-container">
-              <a href="https://ecoleaf.com" class="button">Visite nosso site</a>
+              <a href="https://github.com/vbzt/EcoLeaf" class="button">Visite nosso site</a>
             </div>
             <p>Se você tiver qualquer dúvida ou precisar de ajuda, não hesite em entrar em contato conosco. Estamos aqui para ajudar você a construir e cuidar do seu próprio oásis verde!</p>
             <p>Mais uma vez, obrigado por fazer parte da nossa comunidade. Estamos ansiosos para ver como podemos crescer juntos!</p>
