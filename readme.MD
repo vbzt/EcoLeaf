@@ -77,7 +77,7 @@ cd ../../frontend
 npm i
 ```
 
-Then create and <code>.env</code> archive in the frontend root folder and add the gemini api key:
+Then create and <code>.env</code> archive in the backend root folder and add the gemini api key:
 ```JSON
 API_KEY="YOUR_GEMINI_API_KEY"
 ```
