@@ -1,53 +1,58 @@
 # 🌿 EcoLeaf
 
-EcoLeaf é uma empresa especializada em **jardinagem** e **manutenção de ambientes verdes**, além de oferecer **sistemas de coleta de água da chuva**. Nosso objetivo é promover soluções sustentáveis para transformar e cuidar de ambientes com foco na preservação do meio ambiente e na melhoria da qualidade de vida.
+EcoLeaf is a company specializing in **gardening** and **green space maintenance**, as well as offering **rainwater harvesting systems**. Our goal is to promote sustainable solutions to transform and care for environments, focusing on environmental preservation and improving quality of life.
 
 ---
 
-## 🏡 Nossos Serviços
+## 🏡 Our Services
 
-### 🌿 Jardinagem e Manutenção de Ambientes Verdes
-Transformamos e mantemos jardins, áreas verdes e paisagismo em ambientes residenciais e comerciais. Oferecemos serviços como:
-- **Poda e Adubação**: Manutenção e fortalecimento das plantas.
-- **Irrigação**: Sistemas adaptados às necessidades de cada planta.
-- **Cuidados Específicos**: Tratamentos para diferentes tipos de plantas, respeitando suas características.
+### 🌿 Gardening and Green Space Maintenance
+We transform and maintain gardens, green areas, and landscaping for residential and commercial environments. Our services include:
+- **Pruning and Fertilization**: Maintenance and strengthening of plants.
+- **Irrigation**: Systems tailored to the needs of each plant.
+- **Specific Care**: Treatments for different types of plants, respecting their characteristics.
 
-### 💧 Sistemas de Coleta de Água da Chuva
-Oferecemos soluções completas para a **captação, filtragem e armazenamento de água da chuva**. Nossos serviços incluem:
-- **Venda e Instalação**: Sistemas projetados para residências e empresas.
-- **Manutenção**: Garantia de funcionamento eficiente e sustentável, promovendo economia de recursos hídricos.
+### 💧 Rainwater Harvesting Systems
+We offer complete solutions for **rainwater collection, filtration, and storage**. Our services include:
+- **Sales and Installation**: Systems designed for homes and businesses.
+- **Maintenance**: Ensuring efficient and sustainable operation, promoting water conservation.
 
-### 🤖 Inteligência Artificial para Cuidados com Plantas
-Nossa exclusiva **Inteligência Artificial para cuidados com plantas** oferece:
-- **Recomendações de espécies** ideais com base em fatores como luz, umidade e temperatura do ambiente.
-- **Dicas de manutenção personalizadas** para cada tipo de planta.
-- **Acompanhamento e lembretes de rotina** para garantir a saúde e a beleza das plantas, sejam elas ornamentais, frutíferas ou medicinais.
+### 🤖 Artificial Intelligence for Plant Care
+Our exclusive **Artificial Intelligence for plant care** provides:
+- **Recommendations of ideal species** based on factors such as light, humidity, and temperature of the environment.
+- **Personalized maintenance tips** for each type of plant.
+- **Routine tracking and reminders** to ensure the health and beauty of plants, whether ornamental, fruit-bearing, or medicinal.
 
 ---
 
-EcoLeaf: **sustentabilidade e tecnologia** ao seu alcance para transformar seu espaço em um ambiente verde e sustentável. 🌱
+EcoLeaf: **sustainability and technology** at your fingertips to transform your space into a green and sustainable environment. 🌱
 
-# 👥 Desenvolvedores
+## 👥 Developers
+
 ### FullStack
 **Vitor Buzato** 15449 [Github](https://github.com/vbzt)
-- **Responsabilidades:** Tech Lead do projeto, responsável pelo desenvolvimento completo do lado do servidor, incluindo **todos os CRUDS**. Desenvolveu a **Inteligência Artificial para recomendações de plantas** e implementou a aplicação front-end completa em **React.js**.
+- **Responsibilities:** Tech Lead of the project, responsible for full server-side development, including **all CRUDs**. Developed the **Artificial Intelligence for plant recommendations** and implemented the full front-end application in **React.js**.
 
 ### Backend
 **Leonardo Yudi** 15518 [Github](https://github.com/leoyudigithub)
-- **Responsabilidades:** Desenvolveu o **CRUD do Catálogo de Plantas** e implementou o código para o sistema de **contato via e-mail**, garantindo a funcionalidade de comunicação na aplicação.
+- **Responsibilities:** Developed the **Plant Catalog CRUD** and implemented the code for the **email contact system**, ensuring communication functionality in the application.
 
 ### Frontend
-**Guilherme Rigobello** 15410 [Github](https://github.com/Guilherme-Rigobello) 
-- **Responsabilidades:** Criador do design e código da **landing page** e das **páginas de formulários**. Contribuiu para a criação do **CRUD do Catálogo de Plantas** em conjunto com outros membros da equipe.
+**Guilherme Rigobello** 15410 [Github](https://github.com/Guilherme-Rigobello)
+- **Responsibilities:** Created the design and code for the **landing page** and **form pages**. Contributed to the creation of the **Plant Catalog CRUD** along with other team members.
 
-### Design UI/UX
+### UI/UX Design
 **João Victor** 15905 [Github](https://github.com/ojoaox)
 
-- **Responsabilidades:** Responsável pelo design UI/UX do projeto, criado no **Figma**. Atuou no suporte ao desenvolvimento front-end, contribuindo com ideias para aprimorar a experiência do usuário e a usabilidade da interface.
+- **Responsibilities:** Responsible for the UI/UX design of the project, created in **Figma**. Supported front-end development and contributed ideas to improve user experience and interface usability.
 
 ## Technologies
-- Backend
-	- Node.js | React.js (Vite) | MongoDB | Cookie sessions
+- Backend:
+    - Node.js
+    - React.js (Vite)
+    - MongoDB
+    - Cookie sessions
+
 ## Docs
 ### Backend
 
